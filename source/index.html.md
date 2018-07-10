@@ -27,21 +27,25 @@ This example API documentation page was created with [Slate](https://github.com/
 > To authorize, use this code:
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
+  {
+    "x-auth-token": "token"
+  }
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `token` with your uniquely generated token.
 
 JWL uses Passport's `facebook-token` authentication process.
 
-JWL expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Once a user is verified by the Facebook Login process a `x-auth-token` is using JWT is generated and sent.
 
-`Authorization: EAAZAKwmZC5Ki4BAD0fCZAZCyVQZ...`
+Here after, the token should be included in the header of each request to gain access to secured routes.
+
+This should look something like this:
+
+`x-auth-token: EAAZAKwmZC5Ki4BAD0fCZAZCyVQZ...`
 
 <aside class="notice">
-You must replace <code>token</code> with your personal API key.
+You must replace <code>token</code> with your personal token.
 </aside>
 
 # Kittens
