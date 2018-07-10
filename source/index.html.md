@@ -22,7 +22,7 @@ We have language bindings in JavaScript only! You can view code examples in the 
 
 This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# FACEBOOK LOGIN"
 
 > To authorize, use this code:
 
