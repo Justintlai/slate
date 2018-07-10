@@ -26,7 +26,7 @@ This example API documentation page was created with [Slate](https://github.com/
 
 > To authorize, use this code:
 
-```javascript
+```json
   {
     "x-auth-token": "token"
   }
@@ -48,116 +48,235 @@ This should look something like this:
 You must replace <code>token</code> with your personal token.
 </aside>
 
-# Kittens
+# Users
 
-## Get All Kittens
+## GET a Specific User
 
-```javascript
-  {
-    x-auth-token: token
-  }
-```
 
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> RESPONSE:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "DEBUG": "GET user",
+    "status": 200,
+    "message": "Success: User successfully retrieved",
+    "data": {
+        "user_id": 1,
+        "first_name": "Mark",
+        "last_name": "Robins",
+        "username": "MarkRobins",
+        "email": "MarkRobins@gmail.com",
+        "profile_URL": "https://source.unsplash.com/collection/888146/300x300",
+        "total_followers": 12,
+        "total_following": 1,
+        "total_products": 6
+    }
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific user. 
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+It will return a users profile along with the number of followers, likes and profile picture.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET api/v1/users/:user_id`
+
+Example: [GET User Id 1](https://jwl-be-staging.herokuapp.com/api/v1/users/1)
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+user_id | The id of the user to retrieve
 
-## Delete a Specific Kitten
+### SCOPES
 
-```javascript
-const kittn = require('kittn');
+* *No permission required*
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
 
-> The above command returns JSON structured like this:
+## CREATE a new user
+
+> REQUEST: 
 
 ```json
+// --------
+// HEADER
+// --------
 {
-  "id": 2,
-  "deleted" : ":("
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+  "first_name": "John",
+  "last_name": "Doe",
+  "username": "JohnDoe",
+  "email": "JohnDoe@gmail.com",
+  "profile_URL":"https://demos.subinsb.com/isl-profile-pic/image/person.png"
 }
 ```
 
-This endpoint deletes a specific kitten.
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "POST create new user",
+    "status": 200,
+    "message": "Success: User successfully created",
+    "data": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "username": "JohnDoe",
+    "email": "JohnDoe@gmail.com",
+    "profile_URL":"https://demos.subinsb.com/isl-profile-pic/image/person.png"
+}
+```
+
+This endpoint creates a new user.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`GET api/v1/users/`
 
 ### URL Parameters
 
-Parameter | Description
+* *No parameters required*
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
+
+
+## UDPATE a user
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+  "first_name": "Jon",
+  "last_name": "Snow"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "PUT  user 18's header profile page",
+    "status": 200,
+    "message": "Success: User successfully updated",
+    "data": {
+        "first_name": "Jon",
+        "last_name": "Snow",
+        "username": "JonDoe",
+        "email": "JohnDoe@gmail.com",
+        "profile_URL": "https://demos.subinsb.com/isl-profile-pic/image/person.png"
+    }
+}
+```
+
+This endpoint creates a new user.
+
+### HTTP Request
+
+`GET api/v1/users/`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
+
+### FIELDS
+
+These fields are available to be updated:
+
+Field | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+first_name | A user's first name
+last_name | A user's last name
+username | A user's username depending on availability
+
+
+# Products
+
+## GET a Specific Product
+
+## GET Product list
+
+## CREATE a Product
+
+## UPDATE a Product
+
+## DELETE a Product
+
+# Orders
+
+## GET a Specific Order
+
+## GET Order list
+
+## CREATE a Order
+
+## UPDATE a Order
+
+## DELETE a Order
+
+# Order Statuses
+
+## GET Order Status list
+
+# Categories
+
+## GET Categories list
+
+# Uploads
+
+## CREATE S3 Signed URL 
+
+# Feeds
+
+## GET Feed list
+
+# Images
+
+## GET Images list
+
+# Payments
+
+
+
+
+# [Admin] Authentication
+
+# [Admin] Users
+
+# [Admin] Products
+
+# [Admin] Orders
+
+# [Admin] Order Statuses
+
+# [Admin] Categories
+
+# [Admin] Uploads
+
+# [Admin] Feeds
+
+# [Admin] Images
+
+# [Admin] Payments
 
