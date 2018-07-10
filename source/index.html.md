@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Keys</a>
+  # - <a href='#'>Sign Up for a Developer Keys</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -22,7 +22,7 @@ We have language bindings in JavaScript only! You can view code examples in the 
 
 This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# FACEBOOK LOGIN"
+# Authentication
 
 > To authorize, use this code:
 
@@ -34,14 +34,14 @@ let api = kittn.authorize('meowmeowmeow');
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+JWL uses Passport's `facebook-token` authentication process.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+JWL expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: EAAZAKwmZC5Ki4BAD0fCZAZCyVQZ...`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>token</code> with your personal API key.
 </aside>
 
 # Kittens
@@ -49,10 +49,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 ## Get All Kittens
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+  {
+    x-auth-token: token
+  }
 ```
 
 > The above command returns JSON structured like this:
