@@ -27,9 +27,9 @@ This example API documentation page was created with [Slate](https://github.com/
 > To authorize, use this code:
 
 ```json
-  {
-    "x-auth-token": "token"
-  }
+{
+  "x-auth-token": "token"
+}
 ```
 
 > Make sure to replace `token` with your uniquely generated token.
@@ -52,29 +52,28 @@ You must replace <code>token</code> with your personal token.
 
 ## GET a Specific User
 
-
 > RESPONSE:
 
 ```json
 {
-    "DEBUG": "GET user",
-    "status": 200,
-    "message": "Success: User successfully retrieved",
-    "data": {
-        "user_id": 1,
-        "first_name": "Mark",
-        "last_name": "Robins",
-        "username": "MarkRobins",
-        "email": "MarkRobins@gmail.com",
-        "profile_URL": "https://source.unsplash.com/collection/888146/300x300",
-        "total_followers": 12,
-        "total_following": 1,
-        "total_products": 6
-    }
+  "DEBUG": "GET user",
+  "status": 200,
+  "message": "Success: User successfully retrieved",
+  "data": {
+    "user_id": 1,
+    "first_name": "Mark",
+    "last_name": "Robins",
+    "username": "MarkRobins",
+    "email": "MarkRobins@gmail.com",
+    "profile_URL": "https://source.unsplash.com/collection/888146/300x300",
+    "total_followers": 12,
+    "total_following": 1,
+    "total_products": 6
+  }
 }
 ```
 
-This endpoint retrieves a specific user. 
+This endpoint retrieves a specific user.
 
 It will return a users profile along with the number of followers, likes and profile picture.
 
@@ -86,18 +85,17 @@ Example: [GET User Id 1](https://jwl-be-staging.herokuapp.com/api/v1/users/1)
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-user_id | The id of the user to retrieve
+| Parameter | Description                    |
+| --------- | ------------------------------ |
+| user_id   | The id of the user to retrieve |
 
 ### SCOPES
 
-* *No permission required*
-
+- _No permission required_
 
 ## CREATE a new user
 
-> REQUEST: 
+> REQUEST:
 
 ```json
 // --------
@@ -142,16 +140,15 @@ This endpoint creates a new user.
 
 ### URL Parameters
 
-* *No parameters required*
+- _No parameters required_
 
 ### SCOPES
 
-* This endpoint requires an authentication token to access.
-
+- This endpoint requires an authentication token to access.
 
 ## UDPATE a user
 
-> REQUEST: 
+> REQUEST:
 
 ```json
 // --------
@@ -173,16 +170,16 @@ This endpoint creates a new user.
 
 ```json
 {
-    "DEBUG": "PUT  user 18's header profile page",
-    "status": 200,
-    "message": "Success: User successfully updated",
-    "data": {
-        "first_name": "Jon",
-        "last_name": "Snow",
-        "username": "JonDoe",
-        "email": "JohnDoe@gmail.com",
-        "profile_URL": "https://demos.subinsb.com/isl-profile-pic/image/person.png"
-    }
+  "DEBUG": "PUT  user 18's header profile page",
+  "status": 200,
+  "message": "Success: User successfully updated",
+  "data": {
+    "first_name": "Jon",
+    "last_name": "Snow",
+    "username": "JonDoe",
+    "email": "JohnDoe@gmail.com",
+    "profile_URL": "https://demos.subinsb.com/isl-profile-pic/image/person.png"
+  }
 }
 ```
 
@@ -194,28 +191,89 @@ This endpoint creates a new user.
 
 ### URL Parameters
 
-* *No parameters required*
+- _No parameters required_
 
 ### SCOPES
 
-* This endpoint requires an authentication token to access.
+- This endpoint requires an authentication token to access.
 
 ### FIELDS
 
 These fields are available to be updated:
 
-Field | Description
---------- | -----------
-first_name | A user's first name
-last_name | A user's last name
-username | A user's username depending on availability
-
+| Field      | Description                                 |
+| ---------- | ------------------------------------------- |
+| first_name | A user's first name                         |
+| last_name  | A user's last name                          |
+| username   | A user's username depending on availability |
 
 # Products
 
-## GET a Specific Product
-
 ## GET Product list
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "GET  user: 1's product",
+    "status": 200,
+    "message": "Success: Product data successfully retrieved",
+    "data": [
+        {
+            "product_id": 28,
+            "category_id": 1,
+            "entry_date": "2018-01-07T00:00:00.000Z",
+            "description": "PRE-OWNED 9CT YELLOW GOLD ONYX SIGNET RING",
+            "shipping_YN": true,
+            "meet_in_person_YN": true,
+            "User": {
+                "user_id": 1,
+                "first_name": "CHANGEDDDD",
+                "last_name": "Robins",
+                "username": "MarkRobins"
+            },
+            "Images": [
+                {
+                    "image_URL": "https://picsum.photos/200/300",
+                    "image_description": "Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison.",
+                    "image_date": "2017-12-29T00:00:00.000Z"
+                }
+            ],
+            "Prices": [
+                {
+                    "price": 583.2
+                }
+            ]
+        }
+}
+```
+
+This endpoint creates a new user.
+
+### HTTP Request
+
+`GET api/v1/products?params`
+
+> Example request:
+> `/products?page=1&limit=15&user_id=1`
+
+### URL Parameters
+
+| Parameter | Description                    | required? |
+| --------- | ------------------------------ | --------- |
+| page      | state the page number required | yes       |
+| limit     | state the limit number         | yes       |
+| user_id   | state the user id              | yes       |
+
+### SCOPES
+
+- This endpoint requires an authentication token to access.
+
+### FIELDS
+
+- No fields Required.
+
+## GET a Specific Product
 
 ## CREATE a Product
 
@@ -245,7 +303,7 @@ username | A user's username depending on availability
 
 # Uploads
 
-## CREATE S3 Signed URL 
+## CREATE S3 Signed URL
 
 # Feeds
 
@@ -256,9 +314,6 @@ username | A user's username depending on availability
 ## GET Images list
 
 # Payments
-
-
-
 
 # [Admin] Authentication
 
@@ -279,4 +334,3 @@ username | A user's username depending on availability
 # [Admin] Images
 
 # [Admin] Payments
-
