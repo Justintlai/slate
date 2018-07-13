@@ -248,13 +248,13 @@
             <a href="#products" class="toc-h1 toc-link" data-title="Products">Products</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#create-a-product" class="toc-h2 toc-link" data-title="CREATE a Product">CREATE a Product</a>
+                  </li>
+                  <li>
                     <a href="#get-a-specific-product" class="toc-h2 toc-link" data-title="GET a Specific Product">GET a Specific Product</a>
                   </li>
                   <li>
                     <a href="#get-product-list" class="toc-h2 toc-link" data-title="GET Product list">GET Product list</a>
-                  </li>
-                  <li>
-                    <a href="#create-a-product" class="toc-h2 toc-link" data-title="CREATE a Product">CREATE a Product</a>
                   </li>
                   <li>
                     <a href="#update-a-product" class="toc-h2 toc-link" data-title="UPDATE a Product">UPDATE a Product</a>
@@ -503,6 +503,10 @@ You must replace <code>token</code> with your personal token.
 <p><code>GET api/v1/users?page=1&amp;limit=20</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/users?page=1&amp;limit=20">GET User All</a></p>
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
 <h3 id='url-query'>URL Query</h3>
 <table><thead>
 <tr>
@@ -644,27 +648,53 @@ You must replace <code>token</code> with your personal token.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Permission</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>first_name</td>
 <td>First name extracted from a users facebook account</td>
+<td>loggedIn</td>
 </tr>
 <tr>
 <td>last_name</td>
 <td>Last name extracted from a users facebook account</td>
+<td>loggedIn</td>
 </tr>
 <tr>
 <td>username</td>
 <td>User selected username depending on availability (unqiue)</td>
+<td>loggedIn</td>
 </tr>
 <tr>
 <td>profile_URL</td>
 <td>By default from a user&#39;s facebook account</td>
+<td>loggedIn</td>
 </tr>
 <tr>
 <td>national_id_URL</td>
 <td>Uploaded by a user to become an approved seller</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>email_verified_YN</td>
+<td>Determined email verification</td>
+<td>admin</td>
+</tr>
+<tr>
+<td>seller_YN</td>
+<td>Determine whether a user is a seller</td>
+<td>admin</td>
+</tr>
+<tr>
+<td>disabled_YN</td>
+<td>Determine whether an account is disabled/suspended</td>
+<td>admin</td>
+</tr>
+<tr>
+<td>admin_YN</td>
+<td>Determine whether a user has admin rights</td>
+<td>admin</td>
 </tr>
 </tbody></table>
 
@@ -721,28 +751,6 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
-<h3 id='fields-3'>FIELDS</h3>
-<p>These fields are available to be updated:</p>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>first_name</td>
-<td>A user&#39;s first name</td>
-</tr>
-<tr>
-<td>last_name</td>
-<td>A user&#39;s last name</td>
-</tr>
-<tr>
-<td>username</td>
-<td>A user&#39;s username depending on availability</td>
-</tr>
-</tbody></table>
 
 <!---
 ======================================================================================================================================
@@ -751,23 +759,410 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
+<h2 id='create-a-product'>CREATE a Product</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">//Product</span><span class="w"> </span><span class="err">Category</span><span class="w">
+  </span><span class="s2">"category_id"</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"test description"</span><span class="p">,</span><span class="w">
+  </span><span class="err">//Price</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="err">//Image</span><span class="w"> </span><span class="err">Information</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image1.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test image description"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image2.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test 2 image description"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST create new product"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonSnow"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:32:10.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"King of the North"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wolves.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Wolves"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:32:10.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">121</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Selfie.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon snow"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:32:10.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new product.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST api/v1/products</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-6'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires an authentication token to access.</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
 <h2 id='get-a-specific-product'>GET a Specific Product</h2>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET product by ProductID"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE-OWNED 9CT YELLOW GOLD FULL KRUGERRAND MOUNT PENDANT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rachel"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RachelGreen"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"Images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://picsum.photos/200/300"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison."</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-01T00:00:00.000Z"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">538.8</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific product. </p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET api/v1/products/:product_id</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/product/1">GET Product Id 1</a></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_id</td>
+<td>The id of the product to retrieve</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-7'>SCOPES</h3>
+<ul>
+<li><em>No permission required</em></li>
+</ul>
+
 <!---
 ======================================================================================================================================
 -->
 <h2 id='get-product-list'>GET Product list</h2>
-<!---
-======================================================================================================================================
--->
-<h2 id='create-a-product'>CREATE a Product</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET  user: 1's product"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE-OWNED 9CT YELLOW GOLD ONYX SIGNET RING"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mark"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robins"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"Images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://picsum.photos/200/300"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison."</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-29T00:00:00.000Z"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">583.2</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a list of all products for the logged in user. </p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET api/v1/products</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/products">GET User All</a></p>
+
+<p><code>GET api/v1/products?page=1&amp;limit=20</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/products?page=1&amp;limit=20">GET Products All</a></p>
+<h3 id='url-query-2'>URL Query</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>set the page number to retrieve</td>
+<td>optional (default to 1)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>set the size of the page limit</td>
+<td>optional (default to 15)</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-8'>SCOPES</h3>
+<ul>
+<li><em>You must be logged in to access this endpoint</em></li>
+</ul>
+
 <!---
 ======================================================================================================================================
 -->
 <h2 id='update-a-product'>UPDATE a Product</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"category_id"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"test description 23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"product_id"</span><span class="p">:</span><span class="mi">100</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT  user: 16's product"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully updated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonSnow"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:17:39.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test description 23"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T13:38:35.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint update a product.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>UPDATE api/v1/products</code></p>
+<h3 id='url-parameters-7'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-9'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+<h3 id='fields-3'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Permission</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category_id</td>
+<td>category of the product</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>description</td>
+<td>description of the product</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>shipping_YN</td>
+<td>seller allowing shipping conditions</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>meet_in_person_YN</td>
+<td>seller will meet in person to exchange goods</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>price</td>
+<td>update the price of the product</td>
+<td>loggedIn</td>
+</tr>
+</tbody></table>
+
 <!---
 ======================================================================================================================================
 -->
 <h2 id='delete-a-product'>DELETE a Product</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE  productId: 103"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully deleted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test description"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image1.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test image description"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a product. </p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>DELETE api/v1/products/:product_id</code></p>
+<h3 id='url-parameters-8'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_id</td>
+<td>The id of the product to be deleted</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-10'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+
 <!---
 ======================================================================================================================================
 -->
