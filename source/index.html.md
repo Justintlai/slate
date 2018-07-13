@@ -50,7 +50,58 @@ You must replace <code>token</code> with your personal token.
 
 # Users
 
-## GET a Specific User
+<!---
+======================================================================================================================================
+-->
+## CREATE a new user
+
+> REQUEST: 
+
+```json
+{
+  "first_name": "John",
+  "last_name": "Doe",
+  "username": "JohnDoe",
+  "email": "JohnDoe@gmail.com",
+  "profile_URL":"https://demos.subinsb.com/isl-profile-pic/image/person.png"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "POST create new user",
+    "status": 200,
+    "message": "Success: User successfully created",
+    "data": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "username": "JohnDoe",
+    "email": "JohnDoe@gmail.com",
+    "profile_URL":"https://demos.subinsb.com/isl-profile-pic/image/person.png",
+    "national_id_URL":"https://demos.subinsb.com/isl-profile-pic/image/person.png"
+}
+```
+
+This endpoint creates a new user.
+
+### HTTP Request
+
+`POST api/v1/users`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* *This endpoint requires Facebook Login to Authenticate*
+
+<!---
+======================================================================================================================================
+-->
+## READ a Specific User
 
 
 > RESPONSE:
@@ -95,60 +146,88 @@ user_id | The id of the user to retrieve
 * *No permission required*
 
 
-## CREATE a new user
+<!---
+======================================================================================================================================
+-->
+## READ a list of all users
 
-> REQUEST: 
-
-```json
-// --------
-// HEADER
-// --------
-{
-  "x-auth-token":"token"
-}
-// --------
-// BODY
-// --------
-{
-  "first_name": "John",
-  "last_name": "Doe",
-  "username": "JohnDoe",
-  "email": "JohnDoe@gmail.com",
-  "profile_URL":"https://demos.subinsb.com/isl-profile-pic/image/person.png"
-}
-```
 
 > RESPONSE:
 
 ```json
 {
-    "DEBUG": "POST create new user",
+    "DEBUG": "GET All users",
     "status": 200,
-    "message": "Success: User successfully created",
-    "data": {
-    "first_name": "John",
-    "last_name": "Doe",
-    "username": "JohnDoe",
-    "email": "JohnDoe@gmail.com",
-    "profile_URL":"https://demos.subinsb.com/isl-profile-pic/image/person.png"
+    "message": "Success: User successfully retrieved",
+    "data": [
+        {
+            "user_id": 1,
+            "first_name": "Mark",
+            "last_name": "Robins",
+            "username": "MarkRobins",
+            "email": "MarkRobins@gmail.com",
+            "profile_URL": "https://source.unsplash.com/collection/888146/300x300",
+            "national_id_URL": null,
+            "email_verified_YN": 0,
+            "seller_YN": 0,
+            "disabled_YN": 0,
+            "admin_YN": 0,
+            "total_followers": 12,
+            "total_following": 1,
+            "total_products": 6
+        }...
+    ]
 }
 ```
 
-This endpoint creates a new user.
+This endpoint retrieves a list of all users. 
+
+You can optionally add parameters to further define your output but defaults are applied if nothing is supplied.
 
 ### HTTP Request
 
 `GET api/v1/users/`
 
-### URL Parameters
+Example: [GET User All](https://jwl-be-staging.herokuapp.com/api/v1/users)
 
-* *No parameters required*
+`GET api/v1/users?page=1&limit=20`
+
+Example: [GET User All](https://jwl-be-staging.herokuapp.com/api/v1/users?page=1&limit=20)
+
+### URL Query
+
+Parameter | Description | required?
+--------- | ----------- | ------------
+page | set the page number to retrieve | optional (default to 1)
+limit | set the size of the page limit | optional (default to 15)
 
 ### SCOPES
 
-* This endpoint requires an authentication token to access.
+* This endpoint requires an admin authorisation token to access.
 
+### FIELDS
 
+These fields are available to be updated:
+
+Field | Description
+--------- | -----------
+first_name | First name extracted from a users facebook account
+last_name | Last name extracted from a users facebook account
+username | User selected username depending on availability (unqiue)
+email | The email address linked to their facebook account
+profile_URL | By default from a user's facebook account
+national_id_URL | Uploaded by a user to become an approved seller
+email_verified_YN | Determined email verification
+seller_YN | Determine whether a user is a seller
+disabled_YN | Determine whether an account is disabled/suspended
+admin_YN | Determine whether a user has admin rights
+total_followers | The number of followers a user has
+total_following | The number of people following this user
+total_products | The number of products a user has uploaded
+
+<!---
+======================================================================================================================================
+-->
 ## UDPATE a user
 
 > REQUEST: 
@@ -190,7 +269,80 @@ This endpoint creates a new user.
 
 ### HTTP Request
 
-`GET api/v1/users/`
+`UPDATE api/v1/users/`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
+
+### FIELDS
+
+These fields are available to be updated:
+
+Field | Description
+--------- | -----------
+first_name | First name extracted from a users facebook account
+last_name | Last name extracted from a users facebook account
+username | User selected username depending on availability (unqiue)
+profile_URL | By default from a user's facebook account
+national_id_URL | Uploaded by a user to become an approved seller
+
+
+<!---
+======================================================================================================================================
+-->
+## DELETE a user
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+  "first_name": "Jon",
+  "last_name": "Snow"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "PUT  user 18's header profile page",
+    "status": 200,
+    "message": "Success: User successfully updated",
+    "data": {
+        "first_name": "Jon",
+        "last_name": "Snow",
+        "username": "JonDoe",
+        "email": "JohnDoe@gmail.com",
+        "profile_URL": "https://demos.subinsb.com/isl-profile-pic/image/person.png"
+    }
+}
+```
+
+This endpoint deletes a user. 
+Currently, this will not completely delete all user actions in the database. It will only delete the user from the user table.
+
+
+### HTTP Request
+
+`DELETE api/v1/users/`
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
 
 ### URL Parameters
 
@@ -211,71 +363,99 @@ last_name | A user's last name
 username | A user's username depending on availability
 
 
+<!---
+======================================================================================================================================
+-->
 # Products
 
+<!---
+======================================================================================================================================
+-->
 ## GET a Specific Product
-
+<!---
+======================================================================================================================================
+-->
 ## GET Product list
-
+<!---
+======================================================================================================================================
+-->
 ## CREATE a Product
-
+<!---
+======================================================================================================================================
+-->
 ## UPDATE a Product
-
+<!---
+======================================================================================================================================
+-->
 ## DELETE a Product
-
+<!---
+======================================================================================================================================
+-->
 # Orders
-
+<!---
+======================================================================================================================================
+-->
 ## GET a Specific Order
-
+<!---
+======================================================================================================================================
+-->
 ## GET Order list
-
+<!---
+======================================================================================================================================
+-->
 ## CREATE a Order
-
+<!---
+======================================================================================================================================
+-->
 ## UPDATE a Order
-
+<!---
+======================================================================================================================================
+-->
 ## DELETE a Order
-
+<!---
+======================================================================================================================================
+-->
 # Order Statuses
-
+<!---
+======================================================================================================================================
+-->
 ## GET Order Status list
-
+<!---
+======================================================================================================================================
+-->
 # Categories
-
+<!---
+======================================================================================================================================
+-->
 ## GET Categories list
-
+<!---
+======================================================================================================================================
+-->
 # Uploads
-
+<!---
+======================================================================================================================================
+-->
 ## CREATE S3 Signed URL 
-
+<!---
+======================================================================================================================================
+-->
 # Feeds
-
+<!---
+======================================================================================================================================
+-->
 ## GET Feed list
-
+<!---
+======================================================================================================================================
+-->
 # Images
-
+<!---
+======================================================================================================================================
+-->
 ## GET Images list
-
+<!---
+======================================================================================================================================
+-->
 # Payments
-
-
-
-# [Admin] Authentication
-
-# [Admin] Users
-
-# [Admin] Products
-
-# [Admin] Orders
-
-# [Admin] Order Statuses
-
-# [Admin] Categories
-
-# [Admin] Uploads
-
-# [Admin] Feeds
-
-# [Admin] Images
-
-# [Admin] Payments
-
+<!---
+======================================================================================================================================
+-->
