@@ -46,7 +46,7 @@
   color: #75715e;
 }
 .highlight .err {
-  color: #F79294;
+  color: #960050;
 }
 .highlight .gr {
   color: #960050;
@@ -228,13 +228,19 @@
             <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-a-specific-user" class="toc-h2 toc-link" data-title="GET a Specific User">GET a Specific User</a>
-                  </li>
-                  <li>
                     <a href="#create-a-new-user" class="toc-h2 toc-link" data-title="CREATE a new user">CREATE a new user</a>
                   </li>
                   <li>
+                    <a href="#read-a-specific-user" class="toc-h2 toc-link" data-title="READ a Specific User">READ a Specific User</a>
+                  </li>
+                  <li>
+                    <a href="#read-a-list-of-all-users" class="toc-h2 toc-link" data-title="READ a list of all users">READ a list of all users</a>
+                  </li>
+                  <li>
                     <a href="#udpate-a-user" class="toc-h2 toc-link" data-title="UDPATE a user">UDPATE a user</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-user" class="toc-h2 toc-link" data-title="DELETE a user">DELETE a user</a>
                   </li>
               </ul>
           </li>
@@ -322,36 +328,6 @@
             <a href="#payments" class="toc-h1 toc-link" data-title="Payments">Payments</a>
           </li>
           <li>
-            <a href="#admin-authentication" class="toc-h1 toc-link" data-title="[Admin] Authentication">[Admin] Authentication</a>
-          </li>
-          <li>
-            <a href="#admin-users" class="toc-h1 toc-link" data-title="[Admin] Users">[Admin] Users</a>
-          </li>
-          <li>
-            <a href="#admin-products" class="toc-h1 toc-link" data-title="[Admin] Products">[Admin] Products</a>
-          </li>
-          <li>
-            <a href="#admin-orders" class="toc-h1 toc-link" data-title="[Admin] Orders">[Admin] Orders</a>
-          </li>
-          <li>
-            <a href="#admin-order-statuses" class="toc-h1 toc-link" data-title="[Admin] Order Statuses">[Admin] Order Statuses</a>
-          </li>
-          <li>
-            <a href="#admin-categories" class="toc-h1 toc-link" data-title="[Admin] Categories">[Admin] Categories</a>
-          </li>
-          <li>
-            <a href="#admin-uploads" class="toc-h1 toc-link" data-title="[Admin] Uploads">[Admin] Uploads</a>
-          </li>
-          <li>
-            <a href="#admin-feeds" class="toc-h1 toc-link" data-title="[Admin] Feeds">[Admin] Feeds</a>
-          </li>
-          <li>
-            <a href="#admin-images" class="toc-h1 toc-link" data-title="[Admin] Images">[Admin] Images</a>
-          </li>
-          <li>
-            <a href="#admin-payments" class="toc-h1 toc-link" data-title="[Admin] Payments">[Admin] Payments</a>
-          </li>
-          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -393,7 +369,54 @@
 <aside class="notice">
 You must replace <code>token</code> with your personal token.
 </aside>
-<h1 id='users'>Users</h1><h2 id='get-a-specific-user'>GET a Specific User</h2>
+<h1 id='users'>Users</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-a-new-user'>CREATE a new user</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST create new user"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST api/v1/users</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires Facebook Login to Authenticate</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='read-a-specific-user'>READ a Specific User</h2>
 <blockquote>
 <p>RESPONSE:</p>
 </blockquote>
@@ -417,11 +440,11 @@ You must replace <code>token</code> with your personal token.
 <p>This endpoint retrieves a specific user. </p>
 
 <p>It will return a users profile along with the number of followers, likes and profile picture.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET api/v1/users/:user_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/users/1">GET User Id 1</a></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -433,57 +456,142 @@ You must replace <code>token</code> with your personal token.
 <td>The id of the user to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes'>SCOPES</h3>
+<h3 id='scopes-2'>SCOPES</h3>
 <ul>
 <li><em>No permission required</em></li>
 </ul>
-<h2 id='create-a-new-user'>CREATE a new user</h2>
-<blockquote>
-<p>REQUEST: </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
-</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
-</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
-</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
-</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='read-a-list-of-all-users'>READ a list of all users</h2>
 <blockquote>
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST create new user"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET All users"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully created"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mark"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robins"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins@gmail.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://source.unsplash.com/collection/888146/300x300"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email_verified_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"seller_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"disabled_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"admin_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_following"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_products"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+        </span><span class="p">}</span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint creates a new user.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<p>This endpoint retrieves a list of all users. </p>
+
+<p>You can optionally add parameters to further define your output but defaults are applied if nothing is supplied.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET api/v1/users/</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/users">GET User All</a></p>
+
+<p><code>GET api/v1/users?page=1&amp;limit=20</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/users?page=1&amp;limit=20">GET User All</a></p>
+<h3 id='url-query'>URL Query</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>set the page number to retrieve</td>
+<td>optional (default to 1)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>set the size of the page limit</td>
+<td>optional (default to 15)</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-3'>SCOPES</h3>
 <ul>
-<li><em>No parameters required</em></li>
+<li>This endpoint requires an admin authorisation token to access.</li>
 </ul>
-<h3 id='scopes-2'>SCOPES</h3>
-<ul>
-<li>This endpoint requires an authentication token to access.</li>
-</ul>
+<h3 id='fields'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>First name extracted from a users facebook account</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>Last name extracted from a users facebook account</td>
+</tr>
+<tr>
+<td>username</td>
+<td>User selected username depending on availability (unqiue)</td>
+</tr>
+<tr>
+<td>email</td>
+<td>The email address linked to their facebook account</td>
+</tr>
+<tr>
+<td>profile_URL</td>
+<td>By default from a user&#39;s facebook account</td>
+</tr>
+<tr>
+<td>national_id_URL</td>
+<td>Uploaded by a user to become an approved seller</td>
+</tr>
+<tr>
+<td>email_verified_YN</td>
+<td>Determined email verification</td>
+</tr>
+<tr>
+<td>seller_YN</td>
+<td>Determine whether a user is a seller</td>
+</tr>
+<tr>
+<td>disabled_YN</td>
+<td>Determine whether an account is disabled/suspended</td>
+</tr>
+<tr>
+<td>admin_YN</td>
+<td>Determine whether a user has admin rights</td>
+</tr>
+<tr>
+<td>total_followers</td>
+<td>The number of followers a user has</td>
+</tr>
+<tr>
+<td>total_following</td>
+<td>The number of people following this user</td>
+</tr>
+<tr>
+<td>total_products</td>
+<td>The number of products a user has uploaded</td>
+</tr>
+</tbody></table>
+
+<!---
+======================================================================================================================================
+-->
 <h2 id='udpate-a-user'>UDPATE a user</h2>
 <blockquote>
 <p>REQUEST: </p>
@@ -519,17 +627,101 @@ You must replace <code>token</code> with your personal token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new user.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET api/v1/users/</code></p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>UPDATE api/v1/users/</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-3'>SCOPES</h3>
+<h3 id='scopes-4'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
-<h3 id='fields'>FIELDS</h3>
+<h3 id='fields-2'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>First name extracted from a users facebook account</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>Last name extracted from a users facebook account</td>
+</tr>
+<tr>
+<td>username</td>
+<td>User selected username depending on availability (unqiue)</td>
+</tr>
+<tr>
+<td>profile_URL</td>
+<td>By default from a user&#39;s facebook account</td>
+</tr>
+<tr>
+<td>national_id_URL</td>
+<td>Uploaded by a user to become an approved seller</td>
+</tr>
+</tbody></table>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='delete-a-user'>DELETE a user</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT  user 18's header profile page"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully updated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonDoe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a user. 
+Currently, this will not completely delete all user actions in the database. It will only delete the user from the user table.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>DELETE api/v1/users/</code></p>
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-5'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+<h3 id='fields-3'>FIELDS</h3>
 <p>These fields are available to be updated:</p>
 
 <table><thead>
@@ -551,7 +743,103 @@ You must replace <code>token</code> with your personal token.
 <td>A user&#39;s username depending on availability</td>
 </tr>
 </tbody></table>
-<h1 id='products'>Products</h1><h2 id='get-a-specific-product'>GET a Specific Product</h2><h2 id='get-product-list'>GET Product list</h2><h2 id='create-a-product'>CREATE a Product</h2><h2 id='update-a-product'>UPDATE a Product</h2><h2 id='delete-a-product'>DELETE a Product</h2><h1 id='orders'>Orders</h1><h2 id='get-a-specific-order'>GET a Specific Order</h2><h2 id='get-order-list'>GET Order list</h2><h2 id='create-a-order'>CREATE a Order</h2><h2 id='update-a-order'>UPDATE a Order</h2><h2 id='delete-a-order'>DELETE a Order</h2><h1 id='order-statuses'>Order Statuses</h1><h2 id='get-order-status-list'>GET Order Status list</h2><h1 id='categories'>Categories</h1><h2 id='get-categories-list'>GET Categories list</h2><h1 id='uploads'>Uploads</h1><h2 id='create-s3-signed-url'>CREATE S3 Signed URL</h2><h1 id='feeds'>Feeds</h1><h2 id='get-feed-list'>GET Feed list</h2><h1 id='images'>Images</h1><h2 id='get-images-list'>GET Images list</h2><h1 id='payments'>Payments</h1><h1 id='admin-authentication'>[Admin] Authentication</h1><h1 id='admin-users'>[Admin] Users</h1><h1 id='admin-products'>[Admin] Products</h1><h1 id='admin-orders'>[Admin] Orders</h1><h1 id='admin-order-statuses'>[Admin] Order Statuses</h1><h1 id='admin-categories'>[Admin] Categories</h1><h1 id='admin-uploads'>[Admin] Uploads</h1><h1 id='admin-feeds'>[Admin] Feeds</h1><h1 id='admin-images'>[Admin] Images</h1><h1 id='admin-payments'>[Admin] Payments</h1><h1 id='errors'>Errors</h1>
+
+<!---
+======================================================================================================================================
+-->
+<h1 id='products'>Products</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-a-specific-product'>GET a Specific Product</h2>
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-product-list'>GET Product list</h2>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-a-product'>CREATE a Product</h2>
+<!---
+======================================================================================================================================
+-->
+<h2 id='update-a-product'>UPDATE a Product</h2>
+<!---
+======================================================================================================================================
+-->
+<h2 id='delete-a-product'>DELETE a Product</h2>
+<!---
+======================================================================================================================================
+-->
+<h1 id='orders'>Orders</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-a-specific-order'>GET a Specific Order</h2>
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-order-list'>GET Order list</h2>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-a-order'>CREATE a Order</h2>
+<!---
+======================================================================================================================================
+-->
+<h2 id='update-a-order'>UPDATE a Order</h2>
+<!---
+======================================================================================================================================
+-->
+<h2 id='delete-a-order'>DELETE a Order</h2>
+<!---
+======================================================================================================================================
+-->
+<h1 id='order-statuses'>Order Statuses</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-order-status-list'>GET Order Status list</h2>
+<!---
+======================================================================================================================================
+-->
+<h1 id='categories'>Categories</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-categories-list'>GET Categories list</h2>
+<!---
+======================================================================================================================================
+-->
+<h1 id='uploads'>Uploads</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-s3-signed-url'>CREATE S3 Signed URL</h2>
+<!---
+======================================================================================================================================
+-->
+<h1 id='feeds'>Feeds</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-feed-list'>GET Feed list</h2>
+<!---
+======================================================================================================================================
+-->
+<h1 id='images'>Images</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-images-list'>GET Images list</h2>
+<!---
+======================================================================================================================================
+-->
+<h1 id='payments'>Payments</h1>
+<!---
+======================================================================================================================================
+-->
+<h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>

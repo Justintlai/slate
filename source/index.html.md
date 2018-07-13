@@ -194,6 +194,10 @@ Example: [GET User All](https://jwl-be-staging.herokuapp.com/api/v1/users)
 
 Example: [GET User All](https://jwl-be-staging.herokuapp.com/api/v1/users?page=1&limit=20)
 
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+
 ### URL Query
 
 Parameter | Description | required?
@@ -228,6 +232,8 @@ total_products | The number of products a user has uploaded
 <!---
 ======================================================================================================================================
 -->
+
+
 ## UDPATE a user
 
 > REQUEST: 
@@ -283,18 +289,24 @@ This endpoint creates a new user.
 
 These fields are available to be updated:
 
-Field | Description
---------- | -----------
-first_name | First name extracted from a users facebook account
-last_name | Last name extracted from a users facebook account
-username | User selected username depending on availability (unqiue)
-profile_URL | By default from a user's facebook account
-national_id_URL | Uploaded by a user to become an approved seller
+Field | Description | Permission
+--------- | ----------- | ---------
+first_name | First name extracted from a users facebook account | loggedIn
+last_name | Last name extracted from a users facebook account |  loggedIn
+username | User selected username depending on availability (unqiue) | loggedIn
+profile_URL | By default from a user's facebook account | loggedIn
+national_id_URL | Uploaded by a user to become an approved seller | loggedIn
+email_verified_YN | Determined email verification | admin
+seller_YN | Determine whether a user is a seller | admin
+disabled_YN | Determine whether an account is disabled/suspended | admin
+admin_YN | Determine whether a user has admin rights | admin 
 
 
 <!---
 ======================================================================================================================================
 -->
+
+
 ## DELETE a user
 
 > REQUEST: 
@@ -352,110 +364,547 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 
 * This endpoint requires an authentication token to access.
 
-### FIELDS
-
-These fields are available to be updated:
-
-Field | Description
---------- | -----------
-first_name | A user's first name
-last_name | A user's last name
-username | A user's username depending on availability
 
 
 <!---
 ======================================================================================================================================
 -->
+
+
 # Products
 
 <!---
 ======================================================================================================================================
 -->
-## GET a Specific Product
-<!---
-======================================================================================================================================
--->
-## GET Product list
-<!---
-======================================================================================================================================
--->
+
+
 ## CREATE a Product
+
+> REQUEST: 
+
+```json
+{
+  //Product Category
+  "category_id":11,
+  "description":"test description",
+  //Price
+  "price":"100",
+  "currency_id":"GBP",
+  "shipping_YN":1,
+  "meet_in_person_YN":1,
+  //Image Information
+  "images": [
+    {
+      "image_URL": "image1.com",
+      "image_description": "test image description",
+      "image_date": ""
+    },
+    {
+      "image_URL": "image2.com",
+      "image_description": "test 2 image description",
+      "image_date": ""
+    }
+  ]
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "POST create new product",
+    "status": 200,
+    "message": "Success: Product successfully created",
+    "data": {
+        "user_id": 16,
+        "first_name": "Jon",
+        "last_name": "Snow",
+        "username": "JonSnow",
+        "product_id": 110,
+        "category_id": 11,
+        "entry_date": "2018-07-13T12:32:10.000Z",
+        "description": "King of the North",
+        "shipping_YN": true,
+        "meet_in_person_YN": true,
+        "images": [
+            {
+                "image_id": 120,
+                "image_URL": "Wolves.com",
+                "image_description": "My Wolves",
+                "image_date": "2018-07-13T12:32:10.000Z",
+                "primary_YN": false
+            },
+            {
+                "image_id": 121,
+                "image_URL": "Selfie.com",
+                "image_description": "Jon snow",
+                "image_date": "2018-07-13T12:32:10.000Z",
+                "primary_YN": true
+            }
+        ],
+        "price": "100",
+        "active_YN": true,
+        "currency_id": "GBP"
+    }
+}
+```
+
+This endpoint creates a new product.
+
+### HTTP Request
+
+`POST api/v1/products`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* *This endpoint requires an authentication token to access.*
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
+## GET a Specific Product
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "GET product by ProductID",
+    "status": 200,
+    "message": "Success: Product data successfully retrieved",
+    "data": [
+        {
+            "product_id": 1,
+            "category_id": 6,
+            "entry_date": "2017-11-15T00:00:00.000Z",
+            "description": "PRE-OWNED 9CT YELLOW GOLD FULL KRUGERRAND MOUNT PENDANT",
+            "shipping_YN": false,
+            "meet_in_person_YN": false,
+            "User": {
+                "user_id": 13,
+                "first_name": "Rachel",
+                "last_name": "Green",
+                "username": "RachelGreen"
+            },
+            "Images": [
+                {
+                    "image_URL": "https://picsum.photos/200/300",
+                    "image_description": "Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison.",
+                    "image_date": "2017-11-01T00:00:00.000Z"
+                }
+            ],
+            "Prices": [
+                {
+                    "price": 538.8
+                }
+            ]
+        }
+    ]
+}
+```
+
+This endpoint retrieves a specific product. 
+
+### HTTP Request
+
+`GET api/v1/products/:product_id`
+
+Example: [GET Product Id 1](https://jwl-be-staging.herokuapp.com/api/v1/product/1)
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+product_id | The id of the product to retrieve
+
+### SCOPES
+
+* *No permission required*
+
+<!---
+======================================================================================================================================
+-->
+
+## GET Product list
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "GET  user: 1's product",
+    "status": 200,
+    "message": "Success: Product data successfully retrieved",
+    "data": [
+        {
+            "product_id": 28,
+            "category_id": 1,
+            "entry_date": "2018-01-07T00:00:00.000Z",
+            "description": "PRE-OWNED 9CT YELLOW GOLD ONYX SIGNET RING",
+            "shipping_YN": true,
+            "meet_in_person_YN": true,
+            "User": {
+                "user_id": 1,
+                "first_name": "Mark",
+                "last_name": "Robins",
+                "username": "MarkRobins"
+            },
+            "Images": [
+                {
+                    "image_URL": "https://picsum.photos/200/300",
+                    "image_description": "Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison.",
+                    "image_date": "2017-12-29T00:00:00.000Z"
+                }
+            ],
+            "Prices": [
+                {
+                    "price": 583.2
+                }
+            ]
+        }
+    ]
+}
+```
+
+This endpoint retrieves a list of all products for the logged in user. 
+
+### HTTP Request
+
+`GET api/v1/products`
+
+Example: [GET User All](https://jwl-be-staging.herokuapp.com/api/v1/products)
+
+`GET api/v1/products?page=1&limit=20`
+
+Example: [GET Products All](https://jwl-be-staging.herokuapp.com/api/v1/products?page=1&limit=20)
+
+### URL Query
+
+Parameter | Description | required?
+--------- | ----------- | ------------
+page | set the page number to retrieve | optional (default to 1)
+limit | set the size of the page limit | optional (default to 15)
+
+### SCOPES
+
+* *You must be logged in to access this endpoint*
+
+
+<!---
+======================================================================================================================================
+-->
+
 ## UPDATE a Product
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+  "category_id":8,
+  "description":"test description 23",
+  "shipping_YN":0,
+  "price": 999,
+  "product_id":100
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "PUT  user: 16's product",
+    "status": 200,
+    "message": "Success: Product successfully updated",
+    "data": {
+        "user": {
+            "user_id": 16,
+            "first_name": "Jon",
+            "last_name": "Snow",
+            "username": "JonSnow"
+        },
+        "category_id": 8,
+        "entry_date": "2018-07-13T12:17:39.000Z",
+        "description": "test description 23",
+        "shipping_YN": true,
+        "meet_in_person_YN": true,
+        "Price": {
+            "price": 999,
+            "entry_date": "2018-07-13T13:38:35.000Z",
+            "active_YN": true
+        }
+    }
+}
+```
+
+This endpoint update a product.
+
+### HTTP Request
+
+`UPDATE api/v1/products`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
+
+### FIELDS
+
+These fields are available to be updated:
+
+Field | Description | Permission
+--------- | ----------- | ---------
+category_id | category of the product | loggedIn
+description | description of the product |  loggedIn
+shipping_YN | seller allowing shipping conditions | loggedIn
+meet_in_person_YN |  seller will meet in person to exchange goods | loggedIn
+price | update the price of the product | loggedIn
+
 <!---
 ======================================================================================================================================
 -->
+
 ## DELETE a Product
+
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "DELETE  productId: 103",
+    "status": 200,
+    "message": "Success: Product successfully deleted",
+    "data": [
+        {
+            "id": 103,
+            "category_id": 11,
+            "user_id": 16,
+            "entry_date": "2018-07-13T12:22:17.000Z",
+            "description": "test description",
+            "shipping_YN": true,
+            "meet_in_person_YN": true,
+            "created_at": "2018-07-13T12:22:17.000Z",
+            "updated_at": "2018-07-13T12:22:17.000Z",
+            "product_id": null
+        },
+        {
+            "id": 103,
+            "currency_id": "GBP",
+            "product_id": 103,
+            "price": 100,
+            "entry_date": "2018-07-13T12:22:17.000Z",
+            "active_YN": true,
+            "created_at": "2018-07-13T12:22:17.000Z",
+            "updated_at": "2018-07-13T12:22:17.000Z"
+        },
+        {
+            "id": 106,
+            "product_id": 103,
+            "image_URL": "image1.com",
+            "image_description": "test image description",
+            "image_date": "2018-07-13T12:22:17.000Z",
+            "primary_YN": false,
+            "created_at": "2018-07-13T12:22:17.000Z",
+            "updated_at": "2018-07-13T12:22:17.000Z"
+        }
+    ]
+}
+```
+
+This endpoint deletes a product. 
+
+### HTTP Request
+
+`DELETE api/v1/products/:product_id`
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+product_id | The id of the product to be deleted
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
+
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 # Orders
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 ## GET a Specific Order
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 ## GET Order list
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 ## CREATE a Order
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 ## UPDATE a Order
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 ## DELETE a Order
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 # Order Statuses
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 ## GET Order Status list
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 # Categories
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 ## GET Categories list
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 # Uploads
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 ## CREATE S3 Signed URL 
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 # Feeds
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 ## GET Feed list
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 # Images
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 ## GET Images list
+
+
 <!---
 ======================================================================================================================================
 -->
+
+
 # Payments
+
+
 <!---
 ======================================================================================================================================
 -->
