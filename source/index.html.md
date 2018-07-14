@@ -875,37 +875,34 @@ This endpoint creates a new order.
 
 ```json
 {
-    "DEBUG": "GET Order by OrderID",
+    "DEBUG": "GET order",
     "status": 200,
-    "message": "Success: Order data successfully retrieved",
-    "data": [
-        {
-            "product_id": 1,
-            "category_id": 6,
-            "entry_date": "2017-11-15T00:00:00.000Z",
-            "description": "PRE-OWNED 9CT YELLOW GOLD FULL KRUGERRAND MOUNT PENDANT",
+    "message": "Success: Order successfully found",
+    "data": {
+        "order_id": 41,
+        "order_date": "2018-07-14T14:13:51.000Z",
+        "delivery_method": "shipping",
+        "Product": {
+            "id": 11,
+            "category_id": 1,
+            "user_id": 11,
+            "entry_date": "2017-11-14T00:00:00.000Z",
+            "description": "PRE OWNED 9CT YELLOW GOLD 7 BAR GATE BRACELET",
             "shipping_YN": false,
-            "meet_in_person_YN": false,
-            "User": {
-                "user_id": 13,
-                "first_name": "Rachel",
-                "last_name": "Green",
-                "username": "RachelGreen"
-            },
-            "Images": [
-                {
-                    "image_URL": "https://picsum.photos/200/300",
-                    "image_description": "Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison.",
-                    "image_date": "2017-11-01T00:00:00.000Z"
-                }
-            ],
+            "meet_in_person_YN": true,
+            "created_at": "2018-07-13T12:16:20.000Z",
+            "updated_at": "2018-07-13T12:16:20.000Z",
+            "product_id": null,
             "Prices": [
                 {
-                    "price": 538.8
+                    "price": 106.8
                 }
             ]
+        },
+        "OrderStatus": {
+            "description": "OPEN"
         }
-    ]
+    }
 }
 ```
 
@@ -952,36 +949,35 @@ order_id | The id of the order to retrieve
 
 ```json
 {
-    "DEBUG": "GET A list of Orders",
+    "DEBUG": "GET All orders for current logged in user",
     "status": 200,
-    "message": "Success: Product data successfully retrieved",
+    "message": "Success: Orders successfully found",
     "data": [
         {
-            "product_id": 28,
-            "category_id": 1,
-            "entry_date": "2018-01-07T00:00:00.000Z",
-            "description": "PRE-OWNED 9CT YELLOW GOLD ONYX SIGNET RING",
-            "shipping_YN": true,
-            "meet_in_person_YN": true,
-            "User": {
-                "user_id": 1,
-                "first_name": "Mark",
-                "last_name": "Robins",
-                "username": "MarkRobins"
+            "order_id": 41,
+            "order_date": "2018-07-14T14:13:51.000Z",
+            "delivery_method": "shipping",
+            "Product": {
+                "id": 11,
+                "category_id": 1,
+                "user_id": 11,
+                "entry_date": "2017-11-14T00:00:00.000Z",
+                "description": "PRE OWNED 9CT YELLOW GOLD 7 BAR GATE BRACELET",
+                "shipping_YN": false,
+                "meet_in_person_YN": true,
+                "created_at": "2018-07-13T12:16:20.000Z",
+                "updated_at": "2018-07-13T12:16:20.000Z",
+                "product_id": null,
+                "Prices": [
+                    {
+                        "price": 106.8
+                    }
+                ]
             },
-            "Images": [
-                {
-                    "image_URL": "https://picsum.photos/200/300",
-                    "image_description": "Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison.",
-                    "image_date": "2017-12-29T00:00:00.000Z"
-                }
-            ],
-            "Prices": [
-                {
-                    "price": 583.2
-                }
-            ]
-        }
+            "OrderStatus": {
+                "description": "OPEN"
+            }
+        },
     ]
 }
 ```
@@ -1089,12 +1085,7 @@ These fields are available to be updated:
 
 Field | Description | Permission
 --------- | ----------- | ---------
-category_id | category of the product | loggedIn
-description | description of the product |  loggedIn
-shipping_YN | seller allowing shipping conditions | loggedIn
-meet_in_person_YN |  seller will meet in person to exchange goods | loggedIn
-price | update the price of the product | loggedIn
-
+delivery_method | The method chosen by the buyer to receive the goods | loggedIn
 
 <!---
 ======================================================================================================================================
@@ -1103,6 +1094,54 @@ price | update the price of the product | loggedIn
 
 ## DELETE a Order
 
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "DELETE order delted",
+    "status": 200,
+    "message": "Success: Order successfully deleted",
+    "data": {
+        "id": 48,
+        "user_id": 16,
+        "product_id": 15,
+        "order_date": "2018-07-14T20:03:34.000Z",
+        "order_status_id": 5,
+        "delivery_method": "shipping",
+        "created_at": "2018-07-14T20:03:34.000Z",
+        "updated_at": "2018-07-14T20:03:34.000Z"
+    }
+}
+```
+
+This endpoint deletes a order. 
+
+### HTTP Request
+
+`DELETE api/v1/orders/:order_id`
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+order_id | The id of the product to be deleted
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
 
 <!---
 ======================================================================================================================================
