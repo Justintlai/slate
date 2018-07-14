@@ -777,6 +777,13 @@ product_id | The id of the product to be deleted
 # Orders
 
 
+<!---
+======================================================================================================================================
+-->
+
+
+## CREATE a Order
+
 > REQUEST: 
 
 ```json
@@ -791,7 +798,8 @@ product_id | The id of the product to be deleted
 // --------
 {
   //Product
-  "product_id":11
+  "product_id":11,
+  "delivery_method": "shipping"
 }
 ```
 
@@ -803,35 +811,29 @@ product_id | The id of the product to be deleted
     "status": 200,
     "message": "Success: Order successfully created",
     "data": {
-        //Order Details
-        "order_id": 1,
-        "product_id": 11,
-        "user_id": 16,
-        "order_date": "2018-07-14T14:13:51.000Z",
-        "order_status_id": 5,
-        //PRDUCT
-        "product": [
-            {
-              "user_id": 16,
-              "first_name": "Jon",
-              "last_name": "Snow",
-              "username": "JonSnow",
-              "product_id": 110,
-              "category_id": 11,
-              "entry_date": "2018-07-13T12:32:10.000Z",
-              "description": "King of the North",
-              "shipping_YN": true,
-              "meet_in_person_YN": true
-            }
-        ],
-        //Price
-        "price": [
-          {
-          "price": 100,
-          "active_YN": true,
-          "currency_id": "GBP"
-          }
-        ]
+        "order_id": 47,
+        "order_date": "2018-07-14T19:59:04.000Z",
+        "delivery_method": "shipping",
+        "Product": {
+            "id": 15,
+            "category_id": 1,
+            "user_id": 11,
+            "entry_date": "2017-12-28T00:00:00.000Z",
+            "description": "PRE-OWNED 18CT YELLOW GOLD FANCY BAND RING",
+            "shipping_YN": true,
+            "meet_in_person_YN": false,
+            "created_at": "2018-07-13T12:16:20.000Z",
+            "updated_at": "2018-07-13T12:16:20.000Z",
+            "product_id": null,
+            "Prices": [
+                {
+                    "price": 331.2
+                }
+            ]
+        },
+        "OrderStatus": {
+            "description": "OPEN"
+        }
     }
 }
 ```
@@ -849,7 +851,6 @@ This endpoint creates a new order.
 ### SCOPES
 
 * *This endpoint requires an authentication token to access.*
-
 
 <!---
 ======================================================================================================================================
@@ -1010,13 +1011,6 @@ limit | set the size of the page limit | optional (default to 15)
 
 
 
-<!---
-======================================================================================================================================
--->
-
-
-## CREATE a Order
-
 
 <!---
 ======================================================================================================================================
@@ -1024,6 +1018,82 @@ limit | set the size of the page limit | optional (default to 15)
 
 
 ## UPDATE a Order
+
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+  "category_id":8,
+  "description":"test description 23",
+  "shipping_YN":0,
+  "price": 999,
+  "product_id":100
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "PUT user: 16's order",
+    "status": 200,
+    "message": "Success: Order successfully updated",
+    "data": {
+        "user": {
+            "user_id": 16,
+            "first_name": "Jon",
+            "last_name": "Snow",
+            "username": "JonSnow"
+        },
+        "category_id": 8,
+        "entry_date": "2018-07-13T12:17:39.000Z",
+        "description": "test description 23",
+        "shipping_YN": true,
+        "meet_in_person_YN": true,
+        "Price": {
+            "price": 999,
+            "entry_date": "2018-07-13T13:38:35.000Z",
+            "active_YN": true
+        }
+    }
+}
+```
+
+This endpoint update a order.
+
+### HTTP Request
+
+`UPDATE api/v1/orders`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
+
+### FIELDS
+
+These fields are available to be updated:
+
+Field | Description | Permission
+--------- | ----------- | ---------
+category_id | category of the product | loggedIn
+description | description of the product |  loggedIn
+shipping_YN | seller allowing shipping conditions | loggedIn
+meet_in_person_YN |  seller will meet in person to exchange goods | loggedIn
+price | update the price of the product | loggedIn
 
 
 <!---
