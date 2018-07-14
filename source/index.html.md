@@ -777,6 +777,80 @@ product_id | The id of the product to be deleted
 # Orders
 
 
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+  //Product
+  "product_id":11
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "POST create new order",
+    "status": 200,
+    "message": "Success: Order successfully created",
+    "data": {
+        //Order Details
+        "order_id": 1,
+        "product_id": 11,
+        "user_id": 16,
+        "order_date": "2018-07-14T14:13:51.000Z",
+        "order_status_id": 5,
+        //PRDUCT
+        "product": [
+            {
+              "user_id": 16,
+              "first_name": "Jon",
+              "last_name": "Snow",
+              "username": "JonSnow",
+              "product_id": 110,
+              "category_id": 11,
+              "entry_date": "2018-07-13T12:32:10.000Z",
+              "description": "King of the North",
+              "shipping_YN": true,
+              "meet_in_person_YN": true
+            }
+        ],
+        //Price
+        "price": [
+          {
+          "price": 100,
+          "active_YN": true,
+          "currency_id": "GBP"
+          }
+        ]
+    }
+}
+```
+
+This endpoint creates a new order.
+
+### HTTP Request
+
+`POST api/v1/orders`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* *This endpoint requires an authentication token to access.*
+
+
 <!---
 ======================================================================================================================================
 -->
@@ -785,12 +859,155 @@ product_id | The id of the product to be deleted
 ## GET a Specific Order
 
 
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "GET Order by OrderID",
+    "status": 200,
+    "message": "Success: Order data successfully retrieved",
+    "data": [
+        {
+            "product_id": 1,
+            "category_id": 6,
+            "entry_date": "2017-11-15T00:00:00.000Z",
+            "description": "PRE-OWNED 9CT YELLOW GOLD FULL KRUGERRAND MOUNT PENDANT",
+            "shipping_YN": false,
+            "meet_in_person_YN": false,
+            "User": {
+                "user_id": 13,
+                "first_name": "Rachel",
+                "last_name": "Green",
+                "username": "RachelGreen"
+            },
+            "Images": [
+                {
+                    "image_URL": "https://picsum.photos/200/300",
+                    "image_description": "Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison.",
+                    "image_date": "2017-11-01T00:00:00.000Z"
+                }
+            ],
+            "Prices": [
+                {
+                    "price": 538.8
+                }
+            ]
+        }
+    ]
+}
+```
+
+This endpoint retrieves a specific order. 
+
+### HTTP Request
+
+`GET api/v1/orders/:order_id`
+
+Example: [GET order Id 1](https://jwl-be-staging.herokuapp.com/api/v1/orders/1)
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+order_id | The id of the order to retrieve
+
+### SCOPES
+
+* *This endpoint requires an authentication token to access.*
+
+
+
 <!---
 ======================================================================================================================================
 -->
 
 
 ## GET Order list
+
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "GET A list of Orders",
+    "status": 200,
+    "message": "Success: Product data successfully retrieved",
+    "data": [
+        {
+            "product_id": 28,
+            "category_id": 1,
+            "entry_date": "2018-01-07T00:00:00.000Z",
+            "description": "PRE-OWNED 9CT YELLOW GOLD ONYX SIGNET RING",
+            "shipping_YN": true,
+            "meet_in_person_YN": true,
+            "User": {
+                "user_id": 1,
+                "first_name": "Mark",
+                "last_name": "Robins",
+                "username": "MarkRobins"
+            },
+            "Images": [
+                {
+                    "image_URL": "https://picsum.photos/200/300",
+                    "image_description": "Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison.",
+                    "image_date": "2017-12-29T00:00:00.000Z"
+                }
+            ],
+            "Prices": [
+                {
+                    "price": 583.2
+                }
+            ]
+        }
+    ]
+}
+```
+
+This endpoint retrieves a list of all orders for the logged in user. 
+
+### HTTP Request
+
+`GET api/v1/orders`
+
+Example: [GET User All](https://jwl-be-staging.herokuapp.com/api/v1/orders)
+
+`GET api/v1/orders?page=1&limit=20`
+
+Example: [GET Orders All](https://jwl-be-staging.herokuapp.com/api/v1/orders?page=1&limit=20)
+
+### URL Query
+
+Parameter | Description | required?
+--------- | ----------- | ------------
+page | set the page number to retrieve | optional (default to 1)
+limit | set the size of the page limit | optional (default to 15)
+
+### SCOPES
+
+* *You must be logged in to access this endpoint*
+
 
 
 <!---
