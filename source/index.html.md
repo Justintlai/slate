@@ -1150,6 +1150,58 @@ order_id | The id of the product to be deleted
 
 # Order Statuses
 
+<!---
+======================================================================================================================================
+-->
+
+## CREATE Order Status
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+  //Order Status
+  "id":11,
+  "description": "Another Order Status"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "GET orderStatus",
+    "status": 200,
+    "message": "Success: orderStatus data successfully created",
+    "data": {
+        "id": 11,
+        "description": "Another Order Status"
+    }
+}
+```
+
+This endpoint creates a new order status.
+
+### HTTP Request
+
+`POST api/v1/orderstatuses`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* *This endpoint requires an authentication token to access.*
 
 <!---
 ======================================================================================================================================
@@ -1157,6 +1209,115 @@ order_id | The id of the product to be deleted
 
 
 ## GET Order Status list
+
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "GET orderStatus",
+    "status": 200,
+    "message": "Success: OrderStatus data successfully retrieved",
+    "data": [
+        {
+            "orderstatus_id": 5,
+            "description": "OPEN"
+        },
+        {
+            "orderstatus_id": 10,
+            "description": "CLOSED"
+        },
+        {
+            "orderstatus_id": 99,
+            "description": "CANCELLED"
+        }
+    ]
+}
+```
+
+This endpoint retrieves a list of all order statuses. 
+
+### HTTP Request
+
+`GET api/v1/ordersstatuses`
+
+Example: [GET Order Statuses All](https://jwl-be-staging.herokuapp.com/api/v1/orderstatuses)
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* *You must be logged in to access this endpoint*
+
+
+## Update Order Status
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+  "description":"updated a description"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "Update a specific orderStatus",
+    "status": 200,
+    "message": "Success: orderStatus data successfully updated",
+    "data": {
+        "id": 5,
+        "description": "I CHANGED THIS"
+    }
+}
+```
+
+This endpoint update an order status.
+
+### HTTP Request
+
+`UPDATE api/v1/ordersstatuses`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
+
+### FIELDS
+
+These fields are available to be updated:
+
+Field | Description | Permission
+--------- | ----------- | ---------
+description | The description of an order status | loggedIn
+
 
 
 <!---
