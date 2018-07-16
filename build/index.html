@@ -288,7 +288,13 @@
             <a href="#order-statuses" class="toc-h1 toc-link" data-title="Order Statuses">Order Statuses</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#create-order-status" class="toc-h2 toc-link" data-title="CREATE Order Status">CREATE Order Status</a>
+                  </li>
+                  <li>
                     <a href="#get-order-status-list" class="toc-h2 toc-link" data-title="GET Order Status list">GET Order Status list</a>
+                  </li>
+                  <li>
+                    <a href="#update-order-status" class="toc-h2 toc-link" data-title="Update Order Status">Update Order Status</a>
                   </li>
               </ul>
           </li>
@@ -1528,7 +1534,158 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
+<h2 id='create-order-status'>CREATE Order Status</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="err">//Order</span><span class="w"> </span><span class="err">Status</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another Order Status"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET orderStatus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: orderStatus data successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another Order Status"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new order status.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>POST api/v1/orderstatuses</code></p>
+<h3 id='url-parameters-13'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-16'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires an authentication token to access.</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
 <h2 id='get-order-status-list'>GET Order Status list</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET orderStatus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: OrderStatus data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"orderstatus_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"orderstatus_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"orderstatus_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANCELLED"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a list of all order statuses. </p>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>GET api/v1/ordersstatuses</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orderstatuses">GET Order Statuses All</a></p>
+<h3 id='url-parameters-14'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-17'>SCOPES</h3>
+<ul>
+<li><em>You must be logged in to access this endpoint</em></li>
+</ul>
+<h2 id='update-order-status'>Update Order Status</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"updated a description"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Update a specific orderStatus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: orderStatus data successfully updated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I CHANGED THIS"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint update an order status.</p>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p><code>UPDATE api/v1/ordersstatuses</code></p>
+<h3 id='url-parameters-15'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-18'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+<h3 id='fields-5'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Permission</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>description</td>
+<td>The description of an order status</td>
+<td>loggedIn</td>
+</tr>
+</tbody></table>
+
 <!---
 ======================================================================================================================================
 -->

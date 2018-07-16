@@ -1318,7 +1318,53 @@ Field | Description | Permission
 --------- | ----------- | ---------
 description | The description of an order status | loggedIn
 
+## Delete an Order Status
 
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "DELETE an orderStatus",
+    "status": 200,
+    "message": "Success: Order Status successfully deleted",
+    "data": {
+        "id": 21,
+        "description": "some description",
+        "created_at": "2018-07-16T13:55:35.000Z",
+        "updated_at": "2018-07-16T13:55:35.000Z"
+    }
+}
+```
+
+This endpoint deletes an order status. 
+
+### HTTP Request
+
+`DELETE api/v1/orderstatuses/:orderstatus_id`
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+orderstatus_id | The id of the order status to be deleted
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
 
 <!---
 ======================================================================================================================================
