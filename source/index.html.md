@@ -1110,7 +1110,7 @@ delivery_method | The method chosen by the buyer to receive the goods | loggedIn
 
 ```json
 {
-    "DEBUG": "DELETE order delted",
+    "DEBUG": "DELETE order deleted",
     "status": 200,
     "message": "Success: Order successfully deleted",
     "data": {
@@ -1263,7 +1263,7 @@ Example: [GET Order Statuses All](https://jwl-be-staging.herokuapp.com/api/v1/or
 * *You must be logged in to access this endpoint*
 
 
-## Update Order Status
+## UPDATE Order Status
 
 > REQUEST: 
 
@@ -1318,7 +1318,7 @@ Field | Description | Permission
 --------- | ----------- | ---------
 description | The description of an order status | loggedIn
 
-## Delete an Order Status
+## DELETE an Order Status
 
 
 > REQUEST: 
@@ -1378,8 +1378,140 @@ orderstatus_id | The id of the order status to be deleted
 ======================================================================================================================================
 -->
 
+## CREATE a category
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+  "product_type": "Back",
+  "description": "Jerwellery for your back",
+  "active_YN": 1
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "CREATE a new category",
+    "status": 200,
+    "message": "Success: Category data successfully created",
+    "data": {
+        "product_type": "Back",
+        "description": "Jerwellery for your back"
+    }
+}
+```
+
+This endpoint creates a new category.
+
+### HTTP Request
+
+`POST admin/v1/categories`
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* *This endpoint requires **ADMIN** token to access.*
+
+<!---
+======================================================================================================================================
+-->
 
 ## GET Categories list
+
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "GET category",
+    "status": 200,
+    "message": "Success: Category data successfully retrieved",
+    "data": [
+        {
+            "category_id": 1,
+            "product_type": "Hair and head ornaments",
+            "description": "Jewellery for your hair and head"
+        },
+        {
+            "category_id": 2,
+            "product_type": "Neck",
+            "description": "Anything that goes on your neck"
+        },
+        {
+            "category_id": 3,
+            "product_type": "Arms",
+            "description": "Jewellery for your arms"
+        },
+        {
+            "category_id": 4,
+            "product_type": "Hands",
+            "description": "Jewellery for your hands like rings"
+        },
+        {
+            "category_id": 5,
+            "product_type": "Body",
+            "description": "Anything that goes on your body"
+        },
+        {
+            "category_id": 6,
+            "product_type": "Feet",
+            "description": "Jewellery for your feet"
+        },
+        {
+            "category_id": 7,
+            "product_type": "Back",
+            "description": "Jerwellery for your back"
+        }
+    ]
+}
+```
+
+This endpoint retrieves a list of all categories. 
+
+### HTTP Request
+
+`GET api/v1/categories`
+
+Example: [GET Categories All](https://jwl-be-staging.herokuapp.com/api/v1/categories)
+
+### URL Query
+
+* *No parameters required*
+
+### SCOPES
+
+* *You must be logged in to access this endpoint*
+
 
 
 <!---

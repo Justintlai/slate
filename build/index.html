@@ -296,6 +296,9 @@
                   <li>
                     <a href="#update-order-status" class="toc-h2 toc-link" data-title="Update Order Status">Update Order Status</a>
                   </li>
+                  <li>
+                    <a href="#delete-an-order-status" class="toc-h2 toc-link" data-title="Delete an Order Status">Delete an Order Status</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1685,6 +1688,52 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>loggedIn</td>
 </tr>
 </tbody></table>
+<h2 id='delete-an-order-status'>Delete an Order Status</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE an orderStatus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Order Status successfully deleted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some description"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-16T13:55:35.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-16T13:55:35.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes an order status. </p>
+<h3 id='http-request-19'>HTTP Request</h3>
+<p><code>DELETE api/v1/orderstatuses/:orderstatus_id</code></p>
+<h3 id='url-parameters-16'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderstatus_id</td>
+<td>The id of the order status to be deleted</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-19'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
 
 <!---
 ======================================================================================================================================
