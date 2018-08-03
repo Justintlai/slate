@@ -1,3 +1,8 @@
+1. bundle exec middleman server
+2. git commit -a -m"comment"
+3. git push
+4. ./deploy.sh
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
   <br>

@@ -294,16 +294,19 @@
                     <a href="#get-order-status-list" class="toc-h2 toc-link" data-title="GET Order Status list">GET Order Status list</a>
                   </li>
                   <li>
-                    <a href="#update-order-status" class="toc-h2 toc-link" data-title="Update Order Status">Update Order Status</a>
+                    <a href="#update-order-status" class="toc-h2 toc-link" data-title="UPDATE Order Status">UPDATE Order Status</a>
                   </li>
                   <li>
-                    <a href="#delete-an-order-status" class="toc-h2 toc-link" data-title="Delete an Order Status">Delete an Order Status</a>
+                    <a href="#delete-an-order-status" class="toc-h2 toc-link" data-title="DELETE an Order Status">DELETE an Order Status</a>
                   </li>
               </ul>
           </li>
           <li>
             <a href="#categories" class="toc-h1 toc-link" data-title="Categories">Categories</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-category" class="toc-h2 toc-link" data-title="CREATE a category">CREATE a category</a>
+                  </li>
                   <li>
                     <a href="#get-categories-list" class="toc-h2 toc-link" data-title="GET Categories list">GET Categories list</a>
                   </li>
@@ -1495,7 +1498,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE order delted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE order deleted"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Order successfully deleted"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1631,7 +1634,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
-<h2 id='update-order-status'>Update Order Status</h2>
+<h2 id='update-order-status'>UPDATE Order Status</h2>
 <blockquote>
 <p>REQUEST: </p>
 </blockquote>
@@ -1688,7 +1691,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>loggedIn</td>
 </tr>
 </tbody></table>
-<h2 id='delete-an-order-status'>Delete an Order Status</h2>
+<h2 id='delete-an-order-status'>DELETE an Order Status</h2>
 <blockquote>
 <p>REQUEST: </p>
 </blockquote>
@@ -1742,7 +1745,128 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
+<h2 id='create-a-category'>CREATE a category</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Back"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jerwellery for your back"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATE a new category"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Category data successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Back"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jerwellery for your back"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new category.</p>
+<h3 id='http-request-20'>HTTP Request</h3>
+<p><code>POST admin/v1/categories</code></p>
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+<h3 id='url-parameters-17'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-20'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires **ADMIN</em>* token to access.*</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
 <h2 id='get-categories-list'>GET Categories list</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET category"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Category data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hair and head ornaments"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery for your hair and head"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Neck"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anything that goes on your neck"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arms"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery for your arms"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hands"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery for your hands like rings"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Body"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anything that goes on your body"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Feet"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery for your feet"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Back"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jerwellery for your back"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a list of all categories. </p>
+<h3 id='http-request-21'>HTTP Request</h3>
+<p><code>GET api/v1/categories</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/categories">GET Categories All</a></p>
+<h3 id='url-query-4'>URL Query</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-21'>SCOPES</h3>
+<ul>
+<li><em>You must be logged in to access this endpoint</em></li>
+</ul>
+
 <!---
 ======================================================================================================================================
 -->

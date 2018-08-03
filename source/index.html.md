@@ -1370,7 +1370,6 @@ orderstatus_id | The id of the order status to be deleted
 ======================================================================================================================================
 -->
 
-
 # Categories
 
 
@@ -1513,6 +1512,50 @@ Example: [GET Categories All](https://jwl-be-staging.herokuapp.com/api/v1/catego
 * *You must be logged in to access this endpoint*
 
 
+<!---
+======================================================================================================================================
+-->
+
+
+## GET a Specific Category
+
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+...
+}
+```
+
+This endpoint retrieves a specific order. 
+
+### HTTP Request
+
+`GET api/v1/category/:category_id`
+
+Example: [GET a specific category Id 1](https://jwl-be-staging.herokuapp.com/api/v1/category/1)
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+category_id | The id of the category to retrieve
+
+### SCOPES
+
+* *This endpoint requires an authentication token to access.*
 
 <!---
 ======================================================================================================================================
