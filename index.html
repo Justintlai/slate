@@ -310,6 +310,9 @@
                   <li>
                     <a href="#get-categories-list" class="toc-h2 toc-link" data-title="GET Categories list">GET Categories list</a>
                   </li>
+                  <li>
+                    <a href="#get-a-specific-category" class="toc-h2 toc-link" data-title="GET a Specific Category">GET a Specific Category</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1865,6 +1868,59 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <h3 id='scopes-21'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-a-specific-category'>GET a Specific Category</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET a specific category"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Category data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hair and head ornaments"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery for your hair and head"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-05T09:34:14.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-05T09:34:14.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific order. </p>
+<h3 id='http-request-22'>HTTP Request</h3>
+<p><code>GET api/v1/category/:category_id</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/category/1">GET a specific category Id 1</a></p>
+<h3 id='url-parameters-18'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category_id</td>
+<td>The id of the category to retrieve</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-22'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
 
 <!---
