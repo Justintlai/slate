@@ -313,6 +313,9 @@
                   <li>
                     <a href="#get-a-specific-category" class="toc-h2 toc-link" data-title="GET a Specific Category">GET a Specific Category</a>
                   </li>
+                  <li>
+                    <a href="#update-a-category" class="toc-h2 toc-link" data-title="UPDATE a Category">UPDATE a Category</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1903,7 +1906,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span></code></pre>
 <p>This endpoint retrieves a specific order. </p>
 <h3 id='http-request-22'>HTTP Request</h3>
-<p><code>GET api/v1/category/:category_id</code></p>
+<p><code>GET api/v1/categories/:category_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/category/1">GET a specific category Id 1</a></p>
 <h3 id='url-parameters-18'>URL Parameters</h3>
@@ -1922,6 +1925,84 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='update-a-category'>UPDATE a Category</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Updated Category"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"This is definitely not a category"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPDATE a category"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Category data successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Updated Category"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is definitely not a category"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint update a category.</p>
+<h3 id='http-request-23'>HTTP Request</h3>
+<p><code>UPDATE api/v1/categories</code></p>
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+<h3 id='url-parameters-19'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-23'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an ADMIN authentication token to access.</li>
+</ul>
+<h3 id='fields-6'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Permission</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_type</td>
+<td>category product name</td>
+<td>ADMIN</td>
+</tr>
+<tr>
+<td>description</td>
+<td>description of the category</td>
+<td>ADMIN</td>
+</tr>
+<tr>
+<td>active_YN</td>
+<td>determine if category is used</td>
+<td>ADMIN</td>
+</tr>
+</tbody></table>
 
 <!---
 ======================================================================================================================================
