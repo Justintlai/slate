@@ -1610,7 +1610,7 @@ category_id | The id of the category to retrieve
 }
 ```
 
-This endpoint update a category.
+This endpoint will update a specific category.
 
 ### HTTP Request
 
@@ -1643,6 +1643,72 @@ active_YN | determine if category is used | ADMIN
 -->
 
 
+
+## DELETE a cateogry
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "DELETE category",
+    "status": 200,
+    "message": "Success: categories 6 data successfully deleted!",
+    "data": [
+        {
+            "fieldCount": 0,
+            "affectedRows": 1,
+            "insertId": 0,
+            "info": "",
+            "serverStatus": 2,
+            "warningStatus": 0
+        },
+        {
+            "fieldCount": 0,
+            "affectedRows": 1,
+            "insertId": 0,
+            "info": "",
+            "serverStatus": 2,
+            "warningStatus": 0
+        }
+    ]
+}
+```
+
+This endpoint deletes a specific category.
+
+
+### HTTP Request
+
+`DELETE api/v1/categories/:category_id`
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
+
+
+
+<!---
+======================================================================================================================================
+-->
 
 
 
