@@ -2178,6 +2178,12 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p><code>GET api/v1/feeds?page=1&amp;limit=15</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15">GET Feed</a></p>
+
+<p>Filter by options:</p>
+
+<p><code>GET api/v1/feeds?page=1&amp;limit=15&amp;max_price=500&amp;user_id=1</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15&amp;max_price=500&amp;user_id=1">GET Feed Filtered by Max Price and User ID</a></p>
 <h3 id='url-query-5'>URL Query</h3>
 <table><thead>
 <tr>
@@ -2195,6 +2201,31 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>limit</td>
 <td>set the size of the page limit</td>
 <td>optional (default to 15)</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>the user id that is to be filtered by</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>category_id</td>
+<td>the category id that is to be filtered by</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>description</td>
+<td>the description that is to be filtered by</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>max_price</td>
+<td>filter by the maximum price amount</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>min_price</td>
+<td>filter by the minimum price amount</td>
+<td>optional</td>
 </tr>
 </tbody></table>
 <h3 id='scopes-26'>SCOPES</h3>
