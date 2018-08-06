@@ -1132,6 +1132,10 @@ This endpoint deletes a order.
 
 `DELETE api/v1/orders/:order_id`
 
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+
 
 ### URL Parameters
 
