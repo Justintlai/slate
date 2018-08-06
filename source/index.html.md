@@ -1724,7 +1724,63 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 -->
 
 
-## CREATE S3 Signed URL 
+
+## CREATE S3 Upload URL
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+  "upload_type":"documents",
+  "document_type":"national_id",
+  "images":["nationalid.png", "cat.png", "dob.png"]
+}
+```
+
+> RESPONSE:
+
+```json
+[
+    {
+        "imageName": "nationalid.png",
+        "key": "16/documents/national_id/69dbd320-998e-11e8-8796-272fbb9ba1a5.png",
+        "url": "https://jwl-public.s3.eu-west-2.amazonaws.com/16/documents/national_id/69dbd320-998e-11e8-8796-272fbb9ba1a5.png?Content-Type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKFT6IEBSN7KHXRQ%2F20180806%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20180806T153557Z&X-Amz-Expires=900&X-Amz-Signature=1ea36e60a940f1d02ab1b674219066cd1f5f2d2b7c17d7a93bf5fb18cdc4944c&X-Amz-SignedHeaders=host"
+    },
+    {
+        "imageName": "cat.png",
+        "key": "16/documents/national_id/69dc4850-998e-11e8-8796-272fbb9ba1a5.png",
+        "url": "https://jwl-public.s3.eu-west-2.amazonaws.com/16/documents/national_id/69dc4850-998e-11e8-8796-272fbb9ba1a5.png?Content-Type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKFT6IEBSN7KHXRQ%2F20180806%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20180806T153557Z&X-Amz-Expires=900&X-Amz-Signature=515ffece8e866981f24f13b0226fa5b6188451ae7a48dd8522014e51f2f27eaa&X-Amz-SignedHeaders=host"
+    },
+    {
+        "imageName": "dob.png",
+        "key": "16/documents/national_id/69dc4851-998e-11e8-8796-272fbb9ba1a5.png",
+        "url": "https://jwl-public.s3.eu-west-2.amazonaws.com/16/documents/national_id/69dc4851-998e-11e8-8796-272fbb9ba1a5.png?Content-Type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKFT6IEBSN7KHXRQ%2F20180806%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20180806T153557Z&X-Amz-Expires=900&X-Amz-Signature=4b1d6a96ff1e7855d97cfb72a2da16dabba70fbd62cfcfaea1c68cbd4cc5ec92&X-Amz-SignedHeaders=host"
+    }
+]
+```
+
+This endpoint will generate unique URLS to enable the front end client to upload pictures to AWS S3s
+
+### HTTP Request
+
+`POST api/v1/upload`
+
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* *This endpoint requires a user to be  **Logged In** to access.*
 
 
 <!---
@@ -1740,12 +1796,74 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 -->
 
 
-## GET Feed list
+
+## GET a Feed List
+
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "GET  Feed",
+    "status": 200,
+    "message": "Success: Feed data successfully retrieved",
+    "data": [
+        {
+            "product_id": 32,
+            "category_id": 4,
+            "entry_date": "2018-01-20T00:00:00.000Z",
+            "description": "PRE OWNED 9CT YELLOW GOLD JUG CHARM",
+            "shipping_YN": false,
+            "meet_in_person_YN": true,
+            "User": {
+                "user_id": 9,
+                "first_name": "Bat",
+                "last_name": "Man",
+                "username": "BatMan",
+                "profile_URL": "https://source.unsplash.com/collection/888146/300x300"
+            },
+            "Images": [
+                {
+                    "image_URL": "https://picsum.photos/200/300",
+                    "image_description": "Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison.",
+                    "image_date": "2017-11-28T00:00:00.000Z"
+                }
+            ],
+            "Prices": [
+                {
+                    "price": 549.6
+                }
+            ]
+        }
+    ]
+}...
+```
+
+This endpoint retrieves a feed list.
+
+### HTTP Request
+
+`GET api/v1/feeds?page=1&limit=15`
+
+Example: [GET Feed](https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&limit=15)
+
+
+### URL Query
+
+Parameter | Description | required?
+--------- | ----------- | ------------
+page | set the page number to retrieve | optional (default to 1)
+limit | set the size of the page limit | optional (default to 15)
+
+### SCOPES
+
+* *You must be logged in to access this endpoint*
 
 
 <!---
 ======================================================================================================================================
 -->
+
 
 
 # Images
