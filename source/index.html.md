@@ -1420,7 +1420,7 @@ This endpoint creates a new category.
 
 ### HTTP Request
 
-`POST admin/v1/categories`
+`POST api/v1/categories`
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.

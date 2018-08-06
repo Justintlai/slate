@@ -325,7 +325,7 @@
             <a href="#uploads" class="toc-h1 toc-link" data-title="Uploads">Uploads</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#create-s3-signed-url" class="toc-h2 toc-link" data-title="CREATE S3 Signed URL">CREATE S3 Signed URL</a>
+                    <a href="#create-s3-upload-url" class="toc-h2 toc-link" data-title="CREATE S3 Upload URL">CREATE S3 Upload URL</a>
                   </li>
               </ul>
           </li>
@@ -333,7 +333,7 @@
             <a href="#feeds" class="toc-h1 toc-link" data-title="Feeds">Feeds</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-feed-list" class="toc-h2 toc-link" data-title="GET Feed list">GET Feed list</a>
+                    <a href="#get-a-feed-list" class="toc-h2 toc-link" data-title="GET a Feed List">GET a Feed List</a>
                   </li>
               </ul>
           </li>
@@ -2075,7 +2075,58 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
-<h2 id='create-s3-signed-url'>CREATE S3 Signed URL</h2>
+<h2 id='create-s3-upload-url'>CREATE S3 Upload URL</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"upload_type"</span><span class="p">:</span><span class="s2">"documents"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"document_type"</span><span class="p">:</span><span class="s2">"national_id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:[</span><span class="s2">"nationalid.png"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cat.png"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dob.png"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"imageName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nationalid.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16/documents/national_id/69dbd320-998e-11e8-8796-272fbb9ba1a5.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jwl-public.s3.eu-west-2.amazonaws.com/16/documents/national_id/69dbd320-998e-11e8-8796-272fbb9ba1a5.png?Content-Type=image%2Fpng&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIKFT6IEBSN7KHXRQ%2F20180806%2Feu-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20180806T153557Z&amp;X-Amz-Expires=900&amp;X-Amz-Signature=1ea36e60a940f1d02ab1b674219066cd1f5f2d2b7c17d7a93bf5fb18cdc4944c&amp;X-Amz-SignedHeaders=host"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"imageName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cat.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16/documents/national_id/69dc4850-998e-11e8-8796-272fbb9ba1a5.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jwl-public.s3.eu-west-2.amazonaws.com/16/documents/national_id/69dc4850-998e-11e8-8796-272fbb9ba1a5.png?Content-Type=image%2Fpng&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIKFT6IEBSN7KHXRQ%2F20180806%2Feu-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20180806T153557Z&amp;X-Amz-Expires=900&amp;X-Amz-Signature=515ffece8e866981f24f13b0226fa5b6188451ae7a48dd8522014e51f2f27eaa&amp;X-Amz-SignedHeaders=host"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"imageName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dob.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16/documents/national_id/69dc4851-998e-11e8-8796-272fbb9ba1a5.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jwl-public.s3.eu-west-2.amazonaws.com/16/documents/national_id/69dc4851-998e-11e8-8796-272fbb9ba1a5.png?Content-Type=image%2Fpng&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIKFT6IEBSN7KHXRQ%2F20180806%2Feu-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20180806T153557Z&amp;X-Amz-Expires=900&amp;X-Amz-Signature=4b1d6a96ff1e7855d97cfb72a2da16dabba70fbd62cfcfaea1c68cbd4cc5ec92&amp;X-Amz-SignedHeaders=host"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint will generate unique URLS to enable the front end client to upload pictures to AWS S3s</p>
+<h3 id='http-request-25'>HTTP Request</h3>
+<p><code>POST api/v1/upload</code></p>
+<h3 id='url-parameters-21'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-25'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires a user to be  **Logged In</em>* to access.*</li>
+</ul>
+
 <!---
 ======================================================================================================================================
 -->
@@ -2083,7 +2134,74 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
-<h2 id='get-feed-list'>GET Feed list</h2>
+<h2 id='get-a-feed-list'>GET a Feed List</h2>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET  Feed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Feed data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-20T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE OWNED 9CT YELLOW GOLD JUG CHARM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bat"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Man"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BatMan"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://source.unsplash.com/collection/888146/300x300"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"Images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://picsum.photos/200/300"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison."</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-28T00:00:00.000Z"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">549.6</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="err">...</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a feed list.</p>
+<h3 id='http-request-26'>HTTP Request</h3>
+<p><code>GET api/v1/feeds?page=1&amp;limit=15</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15">GET Feed</a></p>
+<h3 id='url-query-5'>URL Query</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>set the page number to retrieve</td>
+<td>optional (default to 1)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>set the size of the page limit</td>
+<td>optional (default to 15)</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-26'>SCOPES</h3>
+<ul>
+<li><em>You must be logged in to access this endpoint</em></li>
+</ul>
+
 <!---
 ======================================================================================================================================
 -->
