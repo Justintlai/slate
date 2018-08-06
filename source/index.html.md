@@ -1535,7 +1535,17 @@ Example: [GET Categories All](https://jwl-be-staging.herokuapp.com/api/v1/catego
 
 ```json
 {
-...
+    "DEBUG": "GET a specific category",
+    "status": 200,
+    "message": "Success: Category data successfully retrieved",
+    "data": {
+        "id": 1,
+        "product_type": "Hair and head ornaments",
+        "description": "Jewellery for your hair and head",
+        "active_YN": true,
+        "created_at": "2018-08-05T09:34:14.000Z",
+        "updated_at": "2018-08-05T09:34:14.000Z"
+    }
 }
 ```
 
@@ -1543,7 +1553,7 @@ This endpoint retrieves a specific order.
 
 ### HTTP Request
 
-`GET api/v1/category/:category_id`
+`GET api/v1/categories/:category_id`
 
 Example: [GET a specific category Id 1](https://jwl-be-staging.herokuapp.com/api/v1/category/1)
 
@@ -1560,6 +1570,80 @@ category_id | The id of the category to retrieve
 <!---
 ======================================================================================================================================
 -->
+
+
+
+## UPDATE a Category
+
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+  "product_type": "Updated Category",
+  "description":"This is definitely not a category",
+  "active_YN": 1
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "DEBUG": "UPDATE a category",
+    "status": 200,
+    "message": "Success: Category data successfully created",
+    "data": {
+        "product_type": "Updated Category",
+        "description": "This is definitely not a category",
+        "active_YN": true
+    }
+}
+```
+
+This endpoint update a category.
+
+### HTTP Request
+
+`UPDATE api/v1/categories`
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* This endpoint requires an ADMIN authentication token to access.
+
+### FIELDS
+
+These fields are available to be updated:
+
+Field | Description | Permission
+--------- | ----------- | ---------
+product_type | category product name | ADMIN
+description | description of the category | ADMIN
+active_YN | determine if category is used | ADMIN
+
+<!---
+======================================================================================================================================
+-->
+
+
+
 
 
 # Uploads
