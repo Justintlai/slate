@@ -1847,6 +1847,11 @@ This endpoint retrieves a feed list.
 
 Example: [GET Feed](https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&limit=15)
 
+Filter by options:
+
+`GET api/v1/feeds?page=1&limit=15&max_price=500&user_id=1`
+
+Example: [GET Feed Filtered by Max Price and User ID](https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&limit=15&max_price=500&user_id=1)
 
 ### URL Query
 
@@ -1854,6 +1859,12 @@ Parameter | Description | required?
 --------- | ----------- | ------------
 page | set the page number to retrieve | optional (default to 1)
 limit | set the size of the page limit | optional (default to 15)
+user_id | the user id that is to be filtered by | optional
+category_id | the category id that is to be filtered by  | optional
+description | the description that is to be filtered by | optional
+max_price | filter by the maximum price amount | optional
+min_price | filter by the minimum price amount | optional
+
 
 ### SCOPES
 
