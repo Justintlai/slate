@@ -627,7 +627,7 @@ limit | set the size of the page limit | optional (default to 15)
 {
   "category_id":8,
   "description":"test description 23",
-  "shipping_YN":0,
+  "shipping_YN":false,
   "price": 999,
   "product_id":100
 }
