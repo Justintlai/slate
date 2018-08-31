@@ -1,0 +1,2415 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>JWL API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-new-user" class="toc-h2 toc-link" data-title="CREATE a new user">CREATE a new user</a>
+                  </li>
+                  <li>
+                    <a href="#read-a-specific-user" class="toc-h2 toc-link" data-title="READ a Specific User">READ a Specific User</a>
+                  </li>
+                  <li>
+                    <a href="#read-a-list-of-all-users" class="toc-h2 toc-link" data-title="READ a list of all users">READ a list of all users</a>
+                  </li>
+                  <li>
+                    <a href="#udpate-a-user" class="toc-h2 toc-link" data-title="UDPATE a user">UDPATE a user</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-user" class="toc-h2 toc-link" data-title="DELETE a user">DELETE a user</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#products" class="toc-h1 toc-link" data-title="Products">Products</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-product" class="toc-h2 toc-link" data-title="CREATE a Product">CREATE a Product</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-product" class="toc-h2 toc-link" data-title="GET a Specific Product">GET a Specific Product</a>
+                  </li>
+                  <li>
+                    <a href="#get-product-list" class="toc-h2 toc-link" data-title="GET Product list">GET Product list</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-product" class="toc-h2 toc-link" data-title="UPDATE a Product">UPDATE a Product</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-product" class="toc-h2 toc-link" data-title="DELETE a Product">DELETE a Product</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#orders" class="toc-h1 toc-link" data-title="Orders">Orders</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-order" class="toc-h2 toc-link" data-title="CREATE a Order">CREATE a Order</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-order" class="toc-h2 toc-link" data-title="GET a Specific Order">GET a Specific Order</a>
+                  </li>
+                  <li>
+                    <a href="#get-order-list" class="toc-h2 toc-link" data-title="GET Order list">GET Order list</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-order" class="toc-h2 toc-link" data-title="UPDATE a Order">UPDATE a Order</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-order" class="toc-h2 toc-link" data-title="DELETE a Order">DELETE a Order</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#order-statuses" class="toc-h1 toc-link" data-title="Order Statuses">Order Statuses</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-order-status" class="toc-h2 toc-link" data-title="CREATE Order Status">CREATE Order Status</a>
+                  </li>
+                  <li>
+                    <a href="#get-order-status-list" class="toc-h2 toc-link" data-title="GET Order Status list">GET Order Status list</a>
+                  </li>
+                  <li>
+                    <a href="#update-order-status" class="toc-h2 toc-link" data-title="UPDATE Order Status">UPDATE Order Status</a>
+                  </li>
+                  <li>
+                    <a href="#delete-an-order-status" class="toc-h2 toc-link" data-title="DELETE an Order Status">DELETE an Order Status</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#categories" class="toc-h1 toc-link" data-title="Categories">Categories</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-category" class="toc-h2 toc-link" data-title="CREATE a category">CREATE a category</a>
+                  </li>
+                  <li>
+                    <a href="#get-categories-list" class="toc-h2 toc-link" data-title="GET Categories list">GET Categories list</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-category" class="toc-h2 toc-link" data-title="GET a Specific Category">GET a Specific Category</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-category" class="toc-h2 toc-link" data-title="UPDATE a Category">UPDATE a Category</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-cateogry" class="toc-h2 toc-link" data-title="DELETE a cateogry">DELETE a cateogry</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#uploads" class="toc-h1 toc-link" data-title="Uploads">Uploads</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-s3-upload-url" class="toc-h2 toc-link" data-title="CREATE S3 Upload URL">CREATE S3 Upload URL</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#feeds" class="toc-h1 toc-link" data-title="Feeds">Feeds</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-a-feed-list" class="toc-h2 toc-link" data-title="GET a Feed List">GET a Feed List</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#payments-stripe" class="toc-h1 toc-link" data-title="Payments (STRIPE)">Payments (STRIPE)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-payment-charge" class="toc-h2 toc-link" data-title="CREATE a Payment Charge">CREATE a Payment Charge</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#images" class="toc-h1 toc-link" data-title="Images">Images</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-images-list" class="toc-h2 toc-link" data-title="GET Images list">GET Images list</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the JWL API! You can use our API to access JWL API endpoints, which can get information on various products in our database.</p>
+
+<p>We have language bindings in JavaScript only! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+
+<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<h1 id='authentication'>Authentication</h1>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"token"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Make sure to replace <code>token</code> with your uniquely generated token.</p>
+</blockquote>
+
+<p>JWL uses Passport&#39;s <code>facebook-token</code> authentication process.</p>
+
+<p>Once a user is verified by the Facebook Login process a <code>x-auth-token</code> is using JWT is generated and sent.</p>
+
+<p>Here after, the token should be included in the header of each request to gain access to secured routes.</p>
+
+<p>This should look something like this:</p>
+
+<p><code>x-auth-token: EAAZAKwmZC5Ki4BAD0fCZAZCyVQZ...</code></p>
+
+<aside class="notice">
+You must replace <code>token</code> with your personal token.
+</aside>
+<h1 id='users'>Users</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-a-new-user'>CREATE a new user</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST create new user"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST api/v1/users</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires Facebook Login to Authenticate</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='read-a-specific-user'>READ a Specific User</h2>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET user"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mark"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robins"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins@gmail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://source.unsplash.com/collection/888146/300x300"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_following"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_products"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific user. </p>
+
+<p>It will return a users profile along with the number of followers, likes and profile picture.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET api/v1/users/:user_id</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/users/1">GET User Id 1</a></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>The id of the user to retrieve</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-2'>SCOPES</h3>
+<ul>
+<li><em>No permission required</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='read-a-list-of-all-users'>READ a list of all users</h2>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET All users"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mark"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robins"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins@gmail.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://source.unsplash.com/collection/888146/300x300"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email_verified_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"seller_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"disabled_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"admin_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_following"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_products"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+        </span><span class="p">}</span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a list of all users. </p>
+
+<p>You can optionally add parameters to further define your output but defaults are applied if nothing is supplied.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET api/v1/users/</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/users">GET User All</a></p>
+
+<p><code>GET api/v1/users?page=1&amp;limit=20</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/users?page=1&amp;limit=20">GET User All</a></p>
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+<h3 id='url-query'>URL Query</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>set the page number to retrieve</td>
+<td>optional (default to 1)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>set the size of the page limit</td>
+<td>optional (default to 15)</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-3'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an admin authorisation token to access.</li>
+</ul>
+<h3 id='fields'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>First name extracted from a users facebook account</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>Last name extracted from a users facebook account</td>
+</tr>
+<tr>
+<td>username</td>
+<td>User selected username depending on availability (unqiue)</td>
+</tr>
+<tr>
+<td>email</td>
+<td>The email address linked to their facebook account</td>
+</tr>
+<tr>
+<td>profile_URL</td>
+<td>By default from a user&#39;s facebook account</td>
+</tr>
+<tr>
+<td>national_id_URL</td>
+<td>Uploaded by a user to become an approved seller</td>
+</tr>
+<tr>
+<td>email_verified_YN</td>
+<td>Determined email verification</td>
+</tr>
+<tr>
+<td>seller_YN</td>
+<td>Determine whether a user is a seller</td>
+</tr>
+<tr>
+<td>disabled_YN</td>
+<td>Determine whether an account is disabled/suspended</td>
+</tr>
+<tr>
+<td>admin_YN</td>
+<td>Determine whether a user has admin rights</td>
+</tr>
+<tr>
+<td>total_followers</td>
+<td>The number of followers a user has</td>
+</tr>
+<tr>
+<td>total_following</td>
+<td>The number of people following this user</td>
+</tr>
+<tr>
+<td>total_products</td>
+<td>The number of products a user has uploaded</td>
+</tr>
+</tbody></table>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='udpate-a-user'>UDPATE a user</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT  user 18's header profile page"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully updated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonDoe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new user.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>UPDATE api/v1/users/</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-4'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+<h3 id='fields-2'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Permission</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>First name extracted from a users facebook account</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>Last name extracted from a users facebook account</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>username</td>
+<td>User selected username depending on availability (unqiue)</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>profile_URL</td>
+<td>By default from a user&#39;s facebook account</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>national_id_URL</td>
+<td>Uploaded by a user to become an approved seller</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>email_verified_YN</td>
+<td>Determined email verification</td>
+<td>admin</td>
+</tr>
+<tr>
+<td>seller_YN</td>
+<td>Determine whether a user is a seller</td>
+<td>admin</td>
+</tr>
+<tr>
+<td>disabled_YN</td>
+<td>Determine whether an account is disabled/suspended</td>
+<td>admin</td>
+</tr>
+<tr>
+<td>admin_YN</td>
+<td>Determine whether a user has admin rights</td>
+<td>admin</td>
+</tr>
+</tbody></table>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='delete-a-user'>DELETE a user</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT  user 18's header profile page"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully updated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonDoe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a user. 
+Currently, this will not completely delete all user actions in the database. It will only delete the user from the user table.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>DELETE api/v1/users/</code></p>
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-5'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h1 id='products'>Products</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-a-product'>CREATE a Product</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">//Product</span><span class="w"> </span><span class="err">Category</span><span class="w">
+  </span><span class="s2">"category_id"</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"test description"</span><span class="p">,</span><span class="w">
+  </span><span class="err">//Price</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="err">//Image</span><span class="w"> </span><span class="err">Information</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image1.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test image description"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image2.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test 2 image description"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST create new product"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonSnow"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:32:10.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"King of the North"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wolves.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Wolves"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:32:10.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">121</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Selfie.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon snow"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:32:10.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new product.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST api/v1/products</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-6'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires an authentication token to access.</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-a-specific-product'>GET a Specific Product</h2>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET product by ProductID"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE-OWNED 9CT YELLOW GOLD FULL KRUGERRAND MOUNT PENDANT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rachel"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RachelGreen"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"Images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://picsum.photos/200/300"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison."</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-01T00:00:00.000Z"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">538.8</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-05T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific product. </p>
+
+<p>If product has not been sold then null value will show in place of data.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET api/v1/products/:product_id</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/product/1">GET Product Id 1</a></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_id</td>
+<td>The id of the product to retrieve</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-7'>SCOPES</h3>
+<ul>
+<li><em>No permission required</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-product-list'>GET Product list</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET  user: 1's product"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE-OWNED 9CT YELLOW GOLD ONYX SIGNET RING"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mark"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robins"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"Images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://picsum.photos/200/300"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison."</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-29T00:00:00.000Z"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">583.2</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a list of all products for the logged in user. </p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET api/v1/products</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/products">GET User All</a></p>
+
+<p><code>GET api/v1/products?page=1&amp;limit=20</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/products?page=1&amp;limit=20">GET Products All</a></p>
+<h3 id='url-query-2'>URL Query</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>set the page number to retrieve</td>
+<td>optional (default to 1)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>set the size of the page limit</td>
+<td>optional (default to 15)</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-8'>SCOPES</h3>
+<ul>
+<li><em>You must be logged in to access this endpoint</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='update-a-product'>UPDATE a Product</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"category_id"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"test description 23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"product_id"</span><span class="p">:</span><span class="mi">100</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT  user: 16's product"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully updated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonSnow"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:17:39.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test description 23"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T13:38:35.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint update a product.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>UPDATE api/v1/products</code></p>
+<h3 id='url-parameters-7'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-9'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+<h3 id='fields-3'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Permission</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category_id</td>
+<td>category of the product</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>description</td>
+<td>description of the product</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>shipping_YN</td>
+<td>seller allowing shipping conditions</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>meet_in_person_YN</td>
+<td>seller will meet in person to exchange goods</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>price</td>
+<td>update the price of the product</td>
+<td>loggedIn</td>
+</tr>
+</tbody></table>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='delete-a-product'>DELETE a Product</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE  productId: 103"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully deleted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test description"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image1.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test image description"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a product. </p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>DELETE api/v1/products/:product_id</code></p>
+<h3 id='url-parameters-8'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_id</td>
+<td>The id of the product to be deleted</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-10'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h1 id='orders'>Orders</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-a-order'>CREATE a Order</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="err">//Product</span><span class="w">
+  </span><span class="s2">"product_id"</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shipping"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST create new order"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Order successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-14T19:59:04.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shipping"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-28T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE-OWNED 18CT YELLOW GOLD FANCY BAND RING"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:16:20.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:16:20.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">331.2</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"OrderStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new order.</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>POST api/v1/orders</code></p>
+<h3 id='url-parameters-9'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-11'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires an authentication token to access.</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-a-specific-order'>GET a Specific Order</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET order"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Order successfully found"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-14T14:13:51.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shipping"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-14T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE OWNED 9CT YELLOW GOLD 7 BAR GATE BRACELET"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:16:20.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:16:20.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">106.8</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"OrderStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific order. </p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>GET api/v1/orders/:order_id</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders/1">GET order Id 1</a></p>
+<h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>The id of the order to retrieve</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-12'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires an authentication token to access.</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-order-list'>GET Order list</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET All orders for current logged in user"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Orders successfully found"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-14T14:13:51.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shipping"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-14T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE OWNED 9CT YELLOW GOLD 7 BAR GATE BRACELET"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:16:20.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:16:20.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">106.8</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"OrderStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a list of all orders for the logged in user. </p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET api/v1/orders</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders">GET User All</a></p>
+
+<p><code>GET api/v1/orders?page=1&amp;limit=20</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders?page=1&amp;limit=20">GET Orders All</a></p>
+<h3 id='url-query-3'>URL Query</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>set the page number to retrieve</td>
+<td>optional (default to 1)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>set the size of the page limit</td>
+<td>optional (default to 15)</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-13'>SCOPES</h3>
+<ul>
+<li><em>You must be logged in to access this endpoint</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='update-a-order'>UPDATE a Order</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"category_id"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"test description 23"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"product_id"</span><span class="p">:</span><span class="mi">100</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT user: 16's order"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Order successfully updated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonSnow"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:17:39.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test description 23"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T13:38:35.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint update a order.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>UPDATE api/v1/orders</code></p>
+<h3 id='url-parameters-11'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-14'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+<h3 id='fields-4'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Permission</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>delivery_method</td>
+<td>The method chosen by the buyer to receive the goods</td>
+<td>loggedIn</td>
+</tr>
+</tbody></table>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='delete-a-order'>DELETE a Order</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE order deleted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Order successfully deleted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-14T20:03:34.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shipping"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-14T20:03:34.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-14T20:03:34.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a order. </p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>DELETE api/v1/orders/:order_id</code></p>
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+<h3 id='url-parameters-12'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>The id of the product to be deleted</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-15'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h1 id='order-statuses'>Order Statuses</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-order-status'>CREATE Order Status</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="err">//Order</span><span class="w"> </span><span class="err">Status</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another Order Status"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET orderStatus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: orderStatus data successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another Order Status"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new order status.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>POST api/v1/orderstatuses</code></p>
+<h3 id='url-parameters-13'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-16'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires an authentication token to access.</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-order-status-list'>GET Order Status list</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET orderStatus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: OrderStatus data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"orderstatus_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"orderstatus_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"orderstatus_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANCELLED"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a list of all order statuses. </p>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>GET api/v1/ordersstatuses</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orderstatuses">GET Order Statuses All</a></p>
+<h3 id='url-parameters-14'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-17'>SCOPES</h3>
+<ul>
+<li><em>You must be logged in to access this endpoint</em></li>
+</ul>
+<h2 id='update-order-status'>UPDATE Order Status</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"updated a description"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Update a specific orderStatus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: orderStatus data successfully updated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I CHANGED THIS"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint update an order status.</p>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p><code>UPDATE api/v1/ordersstatuses</code></p>
+<h3 id='url-parameters-15'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-18'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+<h3 id='fields-5'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Permission</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>description</td>
+<td>The description of an order status</td>
+<td>loggedIn</td>
+</tr>
+</tbody></table>
+<h2 id='delete-an-order-status'>DELETE an Order Status</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE an orderStatus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Order Status successfully deleted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some description"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-16T13:55:35.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-16T13:55:35.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes an order status. </p>
+<h3 id='http-request-19'>HTTP Request</h3>
+<p><code>DELETE api/v1/orderstatuses/:orderstatus_id</code></p>
+<h3 id='url-parameters-16'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderstatus_id</td>
+<td>The id of the order status to be deleted</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-19'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h1 id='categories'>Categories</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-a-category'>CREATE a category</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Back"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jerwellery for your back"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATE a new category"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Category data successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Back"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jerwellery for your back"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new category.</p>
+<h3 id='http-request-20'>HTTP Request</h3>
+<p><code>POST api/v1/categories</code></p>
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+<h3 id='url-parameters-17'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-20'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires **ADMIN</em>* token to access.*</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-categories-list'>GET Categories list</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET category"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Category data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hair and head ornaments"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery for your hair and head"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Neck"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anything that goes on your neck"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arms"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery for your arms"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hands"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery for your hands like rings"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Body"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anything that goes on your body"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Feet"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery for your feet"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Back"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jerwellery for your back"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a list of all categories. </p>
+<h3 id='http-request-21'>HTTP Request</h3>
+<p><code>GET api/v1/categories</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/categories">GET Categories All</a></p>
+<h3 id='url-query-4'>URL Query</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-21'>SCOPES</h3>
+<ul>
+<li><em>You must be logged in to access this endpoint</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-a-specific-category'>GET a Specific Category</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET a specific category"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Category data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hair and head ornaments"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery for your hair and head"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-05T09:34:14.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-05T09:34:14.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific order. </p>
+<h3 id='http-request-22'>HTTP Request</h3>
+<p><code>GET api/v1/categories/:category_id</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/category/1">GET a specific category Id 1</a></p>
+<h3 id='url-parameters-18'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category_id</td>
+<td>The id of the category to retrieve</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-22'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires an authentication token to access.</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='update-a-category'>UPDATE a Category</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Updated Category"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"This is definitely not a category"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPDATE a category"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Category data successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Updated Category"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is definitely not a category"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will update a specific category.</p>
+<h3 id='http-request-23'>HTTP Request</h3>
+<p><code>UPDATE api/v1/categories</code></p>
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+<h3 id='url-parameters-19'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-23'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an ADMIN authentication token to access.</li>
+</ul>
+<h3 id='fields-6'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Permission</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_type</td>
+<td>category product name</td>
+<td>ADMIN</td>
+</tr>
+<tr>
+<td>description</td>
+<td>description of the category</td>
+<td>ADMIN</td>
+</tr>
+<tr>
+<td>active_YN</td>
+<td>determine if category is used</td>
+<td>ADMIN</td>
+</tr>
+</tbody></table>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='delete-a-cateogry'>DELETE a cateogry</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE category"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: categories 6 data successfully deleted!"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"fieldCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"affectedRows"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"insertId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serverStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"warningStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"fieldCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"affectedRows"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"insertId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serverStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"warningStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a specific category.</p>
+<h3 id='http-request-24'>HTTP Request</h3>
+<p><code>DELETE api/v1/categories/:category_id</code></p>
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+<h3 id='url-parameters-20'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-24'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h1 id='uploads'>Uploads</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-s3-upload-url'>CREATE S3 Upload URL</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"upload_type"</span><span class="p">:</span><span class="s2">"documents"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"document_type"</span><span class="p">:</span><span class="s2">"national_id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:[</span><span class="s2">"nationalid.png"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cat.png"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dob.png"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"imageName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nationalid.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16/documents/national_id/69dbd320-998e-11e8-8796-272fbb9ba1a5.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jwl-public.s3.eu-west-2.amazonaws.com/16/documents/national_id/69dbd320-998e-11e8-8796-272fbb9ba1a5.png?Content-Type=image%2Fpng&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIKFT6IEBSN7KHXRQ%2F20180806%2Feu-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20180806T153557Z&amp;X-Amz-Expires=900&amp;X-Amz-Signature=1ea36e60a940f1d02ab1b674219066cd1f5f2d2b7c17d7a93bf5fb18cdc4944c&amp;X-Amz-SignedHeaders=host"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"imageName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cat.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16/documents/national_id/69dc4850-998e-11e8-8796-272fbb9ba1a5.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jwl-public.s3.eu-west-2.amazonaws.com/16/documents/national_id/69dc4850-998e-11e8-8796-272fbb9ba1a5.png?Content-Type=image%2Fpng&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIKFT6IEBSN7KHXRQ%2F20180806%2Feu-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20180806T153557Z&amp;X-Amz-Expires=900&amp;X-Amz-Signature=515ffece8e866981f24f13b0226fa5b6188451ae7a48dd8522014e51f2f27eaa&amp;X-Amz-SignedHeaders=host"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"imageName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dob.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16/documents/national_id/69dc4851-998e-11e8-8796-272fbb9ba1a5.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jwl-public.s3.eu-west-2.amazonaws.com/16/documents/national_id/69dc4851-998e-11e8-8796-272fbb9ba1a5.png?Content-Type=image%2Fpng&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIKFT6IEBSN7KHXRQ%2F20180806%2Feu-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20180806T153557Z&amp;X-Amz-Expires=900&amp;X-Amz-Signature=4b1d6a96ff1e7855d97cfb72a2da16dabba70fbd62cfcfaea1c68cbd4cc5ec92&amp;X-Amz-SignedHeaders=host"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint will generate unique URLS to enable the front end client to upload pictures to AWS S3s</p>
+<h3 id='http-request-25'>HTTP Request</h3>
+<p><code>POST api/v1/upload</code></p>
+<h3 id='url-parameters-21'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-25'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires a user to be  **Logged In</em>* to access.*</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h1 id='feeds'>Feeds</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-a-feed-list'>GET a Feed List</h2>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET  Feed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Feed data successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-20T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE OWNED 9CT YELLOW GOLD JUG CHARM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bat"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Man"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BatMan"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://source.unsplash.com/collection/888146/300x300"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"Images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://picsum.photos/200/300"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison."</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-28T00:00:00.000Z"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">549.6</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="err">...</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a feed list.</p>
+<h3 id='http-request-26'>HTTP Request</h3>
+<p><code>GET api/v1/feeds?page=1&amp;limit=15</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15">GET Feed</a></p>
+
+<p>Filter by options:</p>
+
+<p><code>GET api/v1/feeds?page=1&amp;limit=15&amp;max_price=500&amp;user_id=1</code></p>
+
+<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15&amp;max_price=500&amp;user_id=1">GET Feed Filtered by Max Price and User ID</a></p>
+<h3 id='url-query-5'>URL Query</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>set the page number to retrieve</td>
+<td>optional (default to 1)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>set the size of the page limit</td>
+<td>optional (default to 15)</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>the user id that is to be filtered by</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>category_id</td>
+<td>the category id that is to be filtered by</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>description</td>
+<td>the description that is to be filtered by</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>max_price</td>
+<td>filter by the maximum price amount</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>min_price</td>
+<td>filter by the minimum price amount</td>
+<td>optional</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-26'>SCOPES</h3>
+<ul>
+<li><em>You must be logged in to access this endpoint</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h1 id='payments-stripe'>Payments (STRIPE)</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-a-payment-charge'>CREATE a Payment Charge</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"stripeToken"</span><span class="p">:</span><span class="s2">"stripeToken"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">---------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">SUCCESS</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">---------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST create a payment against a product"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Payment successfully made"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-31T12:11:57.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-26T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE-OWNED 1982 HALF SOVEREIGN COIN PENDANT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T18:15:41.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T18:15:41.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">590.4</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"OrderStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Order successfully created"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">ERROR</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Server Error!"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product already sold"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will create a charge for a product. If successful it will generate an order.</p>
+<h3 id='http-request-27'>HTTP Request</h3>
+<p><code>POST api/v1/payments/stripe/charge</code></p>
+<h3 id='url-parameters-22'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-27'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h1 id='images'>Images</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-images-list'>GET Images list</h2>
+<!---
+======================================================================================================================================
+-->
+<h1 id='errors'>Errors</h1>
+<aside class="notice">
+This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified kitten could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
