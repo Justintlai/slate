@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>JWL API Reference</title>
+    <title>MINTO API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -223,6 +223,11 @@
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#manual-email-login" class="toc-h2 toc-link" data-title="Manual Email login">Manual Email login</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
@@ -365,7 +370,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the JWL API! You can use our API to access JWL API endpoints, which can get information on various products in our database.</p>
+<p>Welcome to the Minto API! You can use our API to access Minto API endpoints, which can get information on various products in our database.</p>
 
 <p>We have language bindings in JavaScript only! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
@@ -382,7 +387,7 @@
 <p>Make sure to replace <code>token</code> with your uniquely generated token.</p>
 </blockquote>
 
-<p>JWL uses Passport&#39;s <code>facebook-token</code> authentication process.</p>
+<p>Minto uses Passport&#39;s <code>facebook-token</code> and pure email and password as part of the authentication process.</p>
 
 <p>Once a user is verified by the Facebook Login process a <code>x-auth-token</code> is using JWT is generated and sent.</p>
 
@@ -395,6 +400,57 @@
 <aside class="notice">
 You must replace <code>token</code> with your personal token.
 </aside>
+<h2 id='manual-email-login'>Manual Email login</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"doe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"john.doe@hotmail.co.uk"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="s2">"password"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"justin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lai"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"justintlai"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"justin.t.lai@hotmail.co.uk"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fb_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fb_token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email_verified_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seller_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"disabled_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-09T19:56:41.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-09T19:56:41.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User Found"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will create a new user or login an existing user.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST api/v1/auth/login</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires Facebook Login to Authenticate</em></li>
+</ul>
 <h1 id='users'>Users</h1>
 <!---
 ======================================================================================================================================
@@ -428,13 +484,13 @@ You must replace <code>token</code> with your personal token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new user.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST api/v1/users</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes'>SCOPES</h3>
+<h3 id='scopes-2'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires Facebook Login to Authenticate</em></li>
 </ul>
@@ -466,11 +522,11 @@ You must replace <code>token</code> with your personal token.
 <p>This endpoint retrieves a specific user. </p>
 
 <p>It will return a users profile along with the number of followers, likes and profile picture.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET api/v1/users/:user_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/users/1">GET User Id 1</a></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -482,7 +538,7 @@ You must replace <code>token</code> with your personal token.
 <td>The id of the user to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-2'>SCOPES</h3>
+<h3 id='scopes-3'>SCOPES</h3>
 <ul>
 <li><em>No permission required</em></li>
 </ul>
@@ -521,7 +577,7 @@ You must replace <code>token</code> with your personal token.
 <p>This endpoint retrieves a list of all users. </p>
 
 <p>You can optionally add parameters to further define your output but defaults are applied if nothing is supplied.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET api/v1/users/</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/users">GET User All</a></p>
@@ -552,7 +608,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-3'>SCOPES</h3>
+<h3 id='scopes-4'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an admin authorisation token to access.</li>
 </ul>
@@ -657,13 +713,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new user.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>UPDATE api/v1/users/</code></p>
-<h3 id='url-parameters-3'>URL Parameters</h3>
+<h3 id='url-parameters-4'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-4'>SCOPES</h3>
+<h3 id='scopes-5'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -763,17 +819,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span></code></pre>
 <p>This endpoint deletes a user. 
 Currently, this will not completely delete all user actions in the database. It will only delete the user from the user table.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>DELETE api/v1/users/</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-4'>URL Parameters</h3>
+<h3 id='url-parameters-5'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-5'>SCOPES</h3>
+<h3 id='scopes-6'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -854,13 +910,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new product.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST api/v1/products</code></p>
-<h3 id='url-parameters-5'>URL Parameters</h3>
+<h3 id='url-parameters-6'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-6'>SCOPES</h3>
+<h3 id='scopes-7'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -913,11 +969,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>This endpoint retrieves a specific product. </p>
 
 <p>If product has not been sold then null value will show in place of data.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET api/v1/products/:product_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/product/1">GET Product Id 1</a></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -929,7 +985,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-7'>SCOPES</h3>
+<h3 id='scopes-8'>SCOPES</h3>
 <ul>
 <li><em>No permission required</em></li>
 </ul>
@@ -986,7 +1042,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all products for the logged in user. </p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET api/v1/products</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/products">GET User All</a></p>
@@ -1013,7 +1069,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-8'>SCOPES</h3>
+<h3 id='scopes-9'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1070,13 +1126,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update a product.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>UPDATE api/v1/products</code></p>
-<h3 id='url-parameters-7'>URL Parameters</h3>
+<h3 id='url-parameters-8'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-9'>SCOPES</h3>
+<h3 id='scopes-10'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1176,9 +1232,9 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a product. </p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>DELETE api/v1/products/:product_id</code></p>
-<h3 id='url-parameters-8'>URL Parameters</h3>
+<h3 id='url-parameters-9'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1190,7 +1246,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-10'>SCOPES</h3>
+<h3 id='scopes-11'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1256,13 +1312,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new order.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST api/v1/orders</code></p>
-<h3 id='url-parameters-9'>URL Parameters</h3>
+<h3 id='url-parameters-10'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-11'>SCOPES</h3>
+<h3 id='scopes-12'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1316,11 +1372,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific order. </p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET api/v1/orders/:order_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders/1">GET order Id 1</a></p>
-<h3 id='url-parameters-10'>URL Parameters</h3>
+<h3 id='url-parameters-11'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1332,7 +1388,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the order to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-12'>SCOPES</h3>
+<h3 id='scopes-13'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1388,7 +1444,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all orders for the logged in user. </p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET api/v1/orders</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders">GET User All</a></p>
@@ -1415,7 +1471,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-13'>SCOPES</h3>
+<h3 id='scopes-14'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1472,13 +1528,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update a order.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>UPDATE api/v1/orders</code></p>
-<h3 id='url-parameters-11'>URL Parameters</h3>
+<h3 id='url-parameters-12'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-14'>SCOPES</h3>
+<h3 id='scopes-15'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1534,13 +1590,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a order. </p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>DELETE api/v1/orders/:order_id</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-12'>URL Parameters</h3>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1552,7 +1608,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-15'>SCOPES</h3>
+<h3 id='scopes-16'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1597,13 +1653,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new order status.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST api/v1/orderstatuses</code></p>
-<h3 id='url-parameters-13'>URL Parameters</h3>
+<h3 id='url-parameters-14'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-16'>SCOPES</h3>
+<h3 id='scopes-17'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1646,15 +1702,15 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all order statuses. </p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET api/v1/ordersstatuses</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orderstatuses">GET Order Statuses All</a></p>
-<h3 id='url-parameters-14'>URL Parameters</h3>
+<h3 id='url-parameters-15'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-17'>SCOPES</h3>
+<h3 id='scopes-18'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1689,13 +1745,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update an order status.</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>UPDATE api/v1/ordersstatuses</code></p>
-<h3 id='url-parameters-15'>URL Parameters</h3>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-18'>SCOPES</h3>
+<h3 id='scopes-19'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1743,9 +1799,9 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes an order status. </p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>DELETE api/v1/orderstatuses/:orderstatus_id</code></p>
-<h3 id='url-parameters-16'>URL Parameters</h3>
+<h3 id='url-parameters-17'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1757,7 +1813,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the order status to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-19'>SCOPES</h3>
+<h3 id='scopes-20'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1802,17 +1858,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new category.</p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST api/v1/categories</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-17'>URL Parameters</h3>
+<h3 id='url-parameters-18'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-20'>SCOPES</h3>
+<h3 id='scopes-21'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires **ADMIN</em>* token to access.*</li>
 </ul>
@@ -1878,7 +1934,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all categories. </p>
-<h3 id='http-request-21'>HTTP Request</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET api/v1/categories</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/categories">GET Categories All</a></p>
@@ -1886,7 +1942,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-21'>SCOPES</h3>
+<h3 id='scopes-22'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1923,11 +1979,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific order. </p>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
 <p><code>GET api/v1/categories/:category_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/category/1">GET a specific category Id 1</a></p>
-<h3 id='url-parameters-18'>URL Parameters</h3>
+<h3 id='url-parameters-19'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1939,7 +1995,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the category to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-22'>SCOPES</h3>
+<h3 id='scopes-23'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1981,17 +2037,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint will update a specific category.</p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>UPDATE api/v1/categories</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-19'>URL Parameters</h3>
+<h3 id='url-parameters-20'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-23'>SCOPES</h3>
+<h3 id='scopes-24'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an ADMIN authentication token to access.</li>
 </ul>
@@ -2064,17 +2120,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific category.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>DELETE api/v1/categories/:category_id</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-20'>URL Parameters</h3>
+<h3 id='url-parameters-21'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-24'>SCOPES</h3>
+<h3 id='scopes-25'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -2127,13 +2183,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint will generate unique URLS to enable the front end client to upload pictures to AWS S3s</p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>POST api/v1/upload</code></p>
-<h3 id='url-parameters-21'>URL Parameters</h3>
+<h3 id='url-parameters-22'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-25'>SCOPES</h3>
+<h3 id='scopes-26'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires a user to be  **Logged In</em>* to access.*</li>
 </ul>
@@ -2185,7 +2241,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="err">...</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a feed list.</p>
-<h3 id='http-request-26'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>GET api/v1/feeds?page=1&amp;limit=15</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15">GET Feed</a></p>
@@ -2239,7 +2295,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-26'>SCOPES</h3>
+<h3 id='scopes-27'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -2323,13 +2379,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint will create a charge for a product. If successful it will generate an order.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>POST api/v1/payments/stripe/charge</code></p>
-<h3 id='url-parameters-22'>URL Parameters</h3>
+<h3 id='url-parameters-23'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-27'>SCOPES</h3>
+<h3 id='scopes-28'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
