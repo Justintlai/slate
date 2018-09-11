@@ -338,15 +338,20 @@
               </ul>
           </li>
           <li>
+            <a href="#payments-stripe" class="toc-h1 toc-link" data-title="Payments (STRIPE)">Payments (STRIPE)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-payment-charge" class="toc-h2 toc-link" data-title="CREATE a Payment Charge">CREATE a Payment Charge</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#images" class="toc-h1 toc-link" data-title="Images">Images</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-images-list" class="toc-h2 toc-link" data-title="GET Images list">GET Images list</a>
                   </li>
               </ul>
-          </li>
-          <li>
-            <a href="#payments" class="toc-h1 toc-link" data-title="Payments">Payments</a>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
@@ -2236,15 +2241,101 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
+<h1 id='payments-stripe'>Payments (STRIPE)</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-a-payment-charge'>CREATE a Payment Charge</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"stripeToken"</span><span class="p">:</span><span class="s2">"stripeToken"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">---------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">SUCCESS</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">---------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST create a payment against a product"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Payment successfully made"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-31T12:11:57.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-26T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE-OWNED 1982 HALF SOVEREIGN COIN PENDANT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T18:15:41.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T18:15:41.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">590.4</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"OrderStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Order successfully created"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">ERROR</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Server Error!"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product already sold"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will create a charge for a product. If successful it will generate an order.</p>
+<h3 id='http-request-27'>HTTP Request</h3>
+<p><code>POST api/v1/payments/stripe/charge</code></p>
+<h3 id='url-parameters-22'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-27'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
 <h1 id='images'>Images</h1>
 <!---
 ======================================================================================================================================
 -->
 <h2 id='get-images-list'>GET Images list</h2>
-<!---
-======================================================================================================================================
--->
-<h1 id='payments'>Payments</h1>
 <!---
 ======================================================================================================================================
 -->

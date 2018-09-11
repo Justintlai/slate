@@ -34,7 +34,7 @@ This example API documentation page was created with [Slate](https://github.com/
 
 > Make sure to replace `token` with your uniquely generated token.
 
-Minto uses Passport's `facebook-token` authentication process.
+Minto uses Passport's `facebook-token` and pure email and password as part of the authentication process.
 
 Once a user is verified by the Facebook Login process a `x-auth-token` is using JWT is generated and sent.
 
@@ -47,6 +47,66 @@ This should look something like this:
 <aside class="notice">
 You must replace <code>token</code> with your personal token.
 </aside>
+
+
+## Manual Email login
+
+> REQUEST: 
+
+```json
+{
+	"first_name": "john",
+	"last_name":"doe",
+	"username": "johndoe",
+	"email":"john.doe@hotmail.co.uk",
+	"password":"password"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+  "data": {
+    "id": 32,
+    "first_name": "justin",
+    "last_name": "lai",
+    "username": "justintlai",
+    "email": "justin.t.lai@hotmail.co.uk",
+    "password": null,
+    "fb_id": null,
+    "fb_token": null,
+    "stripe_customer_id": null,
+    "profile_URL": null,
+    "national_id_URL": null,
+    "email_verified_YN": false,
+    "seller_YN": false,
+    "disabled_YN": false,
+    "admin_YN": false,
+    "deleted_YN": false,
+    "created_at": "2018-09-09T19:56:41.000Z",
+    "updated_at": "2018-09-09T19:56:41.000Z",
+    "user_id": null
+  },
+  "info": "Success: User Found"
+}
+```
+
+This endpoint will create a new user or login an existing user.
+
+### HTTP Request
+
+`POST api/v1/auth/login`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* *This endpoint requires Facebook Login to Authenticate*
+
+
 
 # Users
 
