@@ -1,5 +1,5 @@
 ---
-title: JWL API Reference
+title: Minto API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
