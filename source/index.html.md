@@ -16,7 +16,7 @@ search: true
 
 # Introduction
 
-Welcome to the JWL API! You can use our API to access JWL API endpoints, which can get information on various products in our database.
+Welcome to the Minto API! You can use our API to access Minto API endpoints, which can get information on various products in our database.
 
 We have language bindings in JavaScript only! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -34,7 +34,7 @@ This example API documentation page was created with [Slate](https://github.com/
 
 > Make sure to replace `token` with your uniquely generated token.
 
-JWL uses Passport's `facebook-token` authentication process.
+Minto uses Passport's `facebook-token` authentication process.
 
 Once a user is verified by the Facebook Login process a `x-auth-token` is using JWT is generated and sent.
 
