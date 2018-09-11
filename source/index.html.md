@@ -1876,6 +1876,111 @@ min_price | filter by the minimum price amount | optional
 -->
 
 
+# Payments (STRIPE)
+
+
+<!---
+======================================================================================================================================
+-->
+
+
+
+## CREATE a Payment Charge
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+
+// --------
+// BODY
+// --------
+{
+  "stripeToken":"stripeToken",
+  "product_id": 2
+}
+```
+
+> RESPONSE:
+
+```json
+
+// ---------
+// SUCCESS
+// ---------
+{
+    "DEBUG": "POST create a payment against a product",
+    "status": 200,
+    "message": "Success: Payment successfully made",
+    "data": {
+        "data": {
+            "order_id": 41,
+            "order_date": "2018-08-31T12:11:57.000Z",
+            "delivery_method": null,
+            "Product": {
+                "id": 2,
+                "category_id": 3,
+                "user_id": 13,
+                "entry_date": "2017-11-26T00:00:00.000Z",
+                "description": "PRE-OWNED 1982 HALF SOVEREIGN COIN PENDANT",
+                "shipping_YN": true,
+                "meet_in_person_YN": false,
+                "created_at": "2018-08-30T18:15:41.000Z",
+                "updated_at": "2018-08-30T18:15:41.000Z",
+                "product_id": null,
+                "Prices": [
+                    {
+                        "price": 590.4
+                    }
+                ]
+            },
+            "OrderStatus": {
+                "description": "OPEN"
+            }
+        },
+        "info": "Success: Order successfully created"
+    }
+}
+
+// --------
+// ERROR
+// --------
+
+{
+    "status": 400,
+    "message": "Server Error!",
+    "err": "Product already sold",
+    "redirect": "/"
+}
+```
+
+This endpoint will create a charge for a product. If successful it will generate an order.
+
+
+### HTTP Request
+
+`POST api/v1/payments/stripe/charge`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
+
+
+
+<!---
+======================================================================================================================================
+-->
+
+
 
 # Images
 
@@ -1892,10 +1997,3 @@ min_price | filter by the minimum price amount | optional
 ======================================================================================================================================
 -->
 
-
-# Payments
-
-
-<!---
-======================================================================================================================================
--->
