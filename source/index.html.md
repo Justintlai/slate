@@ -430,6 +430,250 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 ======================================================================================================================================
 -->
 
+# Followers
+
+<!---
+======================================================================================================================================
+-->
+## CREATE a new follower
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+```
+
+> REQUEST: 
+
+```json
+{
+  "folloing_id": 1,
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "data": {
+        "id": 2,
+        "follower_id": 17,
+        "following_id": 4,
+        "follow_date": "2018-09-26T05:24:08.000Z"
+    },
+    "info": "Success: Follower data successfully created"
+}
+```
+
+This endpoint creates a new follower for the user logged in.
+
+### HTTP Request
+
+`POST api/v1/followers`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* *This endpoint requires Facebook Login to Authenticate*
+
+<!---
+======================================================================================================================================
+-->
+## READ a Specific User's Follower List
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+  "data": {
+      "count": 2,
+      "rows": [
+          {
+              "id": 1,
+              "follower_id": 1,
+              "following_id": 2,
+              "follow_date": "2017-12-01T00:00:00.000Z",
+              "created_at": "2018-08-30T08:30:33.000Z",
+              "updated_at": "2018-08-30T08:30:33.000Z"
+          },
+          {
+              "id": 2,
+              "follower_id": 1,
+              "following_id": 3,
+              "follow_date": "2017-12-03T00:00:00.000Z",
+              "created_at": "2018-08-30T08:30:33.000Z",
+              "updated_at": "2018-08-30T08:30:33.000Z"
+          }
+      ]
+  },
+  "info": "Success: Follower data successfully retrieved"
+}
+```
+
+This endpoint retrieves a specific user. 
+
+It will return a users profile along with the number of followers, likes and profile picture.
+
+### HTTP Request
+
+`GET api/v1/followers/:user_id`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+user_id | The id of the user to retrieve
+
+### SCOPES
+
+* *This endpoint requires Facebook Login to Authenticate*
+
+
+<!---
+======================================================================================================================================
+-->
+## READ a list of followers
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+  "data": {
+      "count": 2,
+      "rows": [
+          {
+              "id": 1,
+              "follower_id": 1,
+              "following_id": 2,
+              "follow_date": "2017-12-01T00:00:00.000Z",
+              "created_at": "2018-08-30T08:30:33.000Z",
+              "updated_at": "2018-08-30T08:30:33.000Z"
+          },
+          {
+              "id": 2,
+              "follower_id": 1,
+              "following_id": 3,
+              "follow_date": "2017-12-03T00:00:00.000Z",
+              "created_at": "2018-08-30T08:30:33.000Z",
+              "updated_at": "2018-08-30T08:30:33.000Z"
+          }
+      ]
+  },
+  "info": "Success: Follower data successfully retrieved"
+}
+```
+
+This endpoint retrieves a list of all follower for the user logged in. 
+
+You can optionally add parameters to further define your output but defaults are applied if nothing is supplied.
+
+### HTTP Request
+
+`GET api/v1/followers/`
+
+`GET api/v1/followers?page=1&limit=20`
+
+### URL Query
+
+Parameter | Description | required?
+--------- | ----------- | ------------
+page | set the page number to retrieve | optional (default to 1)
+limit | set the size of the page limit | optional (default to 15)
+
+### SCOPES
+
+* *This endpoint requires Facebook Login to Authenticate*
+
+
+<!---
+======================================================================================================================================
+-->
+
+## DELETE a follower
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+   "following_id": 6
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "data": {
+        "id": 40,
+        "follower_id": 17,
+        "following_id": 6,
+        "follow_date": "2018-09-26T11:30:53.000Z",
+        "created_at": "2018-09-26T11:30:53.000Z",
+        "updated_at": "2018-09-26T11:30:53.000Z"
+    },
+    "info": "Success: User id 17 has unfollowed user id 6"
+}
+```
+
+This endpoint deletes a follower from the logged in user's follower list. 
+
+### HTTP Request
+
+`DELETE api/v1/followers/`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* *This endpoint requires Facebook Login to Authenticate*
+
+
+
+<!---
+======================================================================================================================================
+-->
+
 
 # Products
 
