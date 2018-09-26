@@ -250,6 +250,23 @@
               </ul>
           </li>
           <li>
+            <a href="#followers" class="toc-h1 toc-link" data-title="Followers">Followers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-new-follower" class="toc-h2 toc-link" data-title="CREATE a new follower">CREATE a new follower</a>
+                  </li>
+                  <li>
+                    <a href="#read-a-specific-user-39-s-follower-list" class="toc-h2 toc-link" data-title="READ a Specific User's Follower List">READ a Specific User's Follower List</a>
+                  </li>
+                  <li>
+                    <a href="#read-a-list-of-followers" class="toc-h2 toc-link" data-title="READ a list of followers">READ a list of followers</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-follower" class="toc-h2 toc-link" data-title="DELETE a follower">DELETE a follower</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#products" class="toc-h1 toc-link" data-title="Products">Products</a>
               <ul class="toc-list-h2">
                   <li>
@@ -837,6 +854,240 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
+<h1 id='followers'>Followers</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-a-new-follower'>CREATE a new follower</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"folloing_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T05:24:08.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Follower data successfully created"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new follower for the user logged in.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST api/v1/followers</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-7'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires Facebook Login to Authenticate</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='read-a-specific-user-39-s-follower-list'>READ a Specific User&#39;s Follower List</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-03T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Follower data successfully retrieved"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific user. </p>
+
+<p>It will return a users profile along with the number of followers, likes and profile picture.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET api/v1/followers/:user_id</code></p>
+<h3 id='url-parameters-7'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>The id of the user to retrieve</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-8'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires Facebook Login to Authenticate</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='read-a-list-of-followers'>READ a list of followers</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-03T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Follower data successfully retrieved"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a list of all follower for the user logged in. </p>
+
+<p>You can optionally add parameters to further define your output but defaults are applied if nothing is supplied.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET api/v1/followers/</code></p>
+
+<p><code>GET api/v1/followers?page=1&amp;limit=20</code></p>
+<h3 id='url-query-2'>URL Query</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>set the page number to retrieve</td>
+<td>optional (default to 1)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>set the size of the page limit</td>
+<td>optional (default to 15)</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-9'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires Facebook Login to Authenticate</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='delete-a-follower'>DELETE a follower</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T11:30:53.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T11:30:53.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T11:30:53.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User id 17 has unfollowed user id 6"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a follower from the logged in user&#39;s follower list. </p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>DELETE api/v1/followers/</code></p>
+<h3 id='url-parameters-8'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-10'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires Facebook Login to Authenticate</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
 <h1 id='products'>Products</h1>
 <!---
 ======================================================================================================================================
@@ -910,13 +1161,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new product.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST api/v1/products</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<h3 id='url-parameters-9'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-7'>SCOPES</h3>
+<h3 id='scopes-11'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -963,11 +1214,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific product. </p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET api/v1/products/:product_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/product/1">GET Product Id 1</a></p>
-<h3 id='url-parameters-7'>URL Parameters</h3>
+<h3 id='url-parameters-10'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -979,7 +1230,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-8'>SCOPES</h3>
+<h3 id='scopes-12'>SCOPES</h3>
 <ul>
 <li><em>No permission required</em></li>
 </ul>
@@ -1036,7 +1287,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all products for the logged in user. </p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET api/v1/products</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/products">GET User All</a></p>
@@ -1044,7 +1295,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p><code>GET api/v1/products?page=1&amp;limit=20</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/products?page=1&amp;limit=20">GET Products All</a></p>
-<h3 id='url-query-2'>URL Query</h3>
+<h3 id='url-query-3'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1063,7 +1314,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-9'>SCOPES</h3>
+<h3 id='scopes-13'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1120,13 +1371,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update a product.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>UPDATE api/v1/products</code></p>
-<h3 id='url-parameters-8'>URL Parameters</h3>
+<h3 id='url-parameters-11'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-10'>SCOPES</h3>
+<h3 id='scopes-14'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1226,9 +1477,9 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a product. </p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>DELETE api/v1/products/:product_id</code></p>
-<h3 id='url-parameters-9'>URL Parameters</h3>
+<h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1240,7 +1491,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-11'>SCOPES</h3>
+<h3 id='scopes-15'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1306,13 +1557,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new order.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>POST api/v1/orders</code></p>
-<h3 id='url-parameters-10'>URL Parameters</h3>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-12'>SCOPES</h3>
+<h3 id='scopes-16'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1366,11 +1617,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific order. </p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET api/v1/orders/:order_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders/1">GET order Id 1</a></p>
-<h3 id='url-parameters-11'>URL Parameters</h3>
+<h3 id='url-parameters-14'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1382,7 +1633,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the order to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-13'>SCOPES</h3>
+<h3 id='scopes-17'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1438,7 +1689,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all orders for the logged in user. </p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET api/v1/orders</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders">GET User All</a></p>
@@ -1446,7 +1697,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p><code>GET api/v1/orders?page=1&amp;limit=20</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders?page=1&amp;limit=20">GET Orders All</a></p>
-<h3 id='url-query-3'>URL Query</h3>
+<h3 id='url-query-4'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1465,7 +1716,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-14'>SCOPES</h3>
+<h3 id='scopes-18'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1522,13 +1773,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update a order.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>UPDATE api/v1/orders</code></p>
-<h3 id='url-parameters-12'>URL Parameters</h3>
+<h3 id='url-parameters-15'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-15'>SCOPES</h3>
+<h3 id='scopes-19'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1584,13 +1835,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a order. </p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>DELETE api/v1/orders/:order_id</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-13'>URL Parameters</h3>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1602,7 +1853,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-16'>SCOPES</h3>
+<h3 id='scopes-20'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1647,13 +1898,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new order status.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST api/v1/orderstatuses</code></p>
-<h3 id='url-parameters-14'>URL Parameters</h3>
+<h3 id='url-parameters-17'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-17'>SCOPES</h3>
+<h3 id='scopes-21'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1696,15 +1947,15 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all order statuses. </p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET api/v1/ordersstatuses</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orderstatuses">GET Order Statuses All</a></p>
-<h3 id='url-parameters-15'>URL Parameters</h3>
+<h3 id='url-parameters-18'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-18'>SCOPES</h3>
+<h3 id='scopes-22'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1739,13 +1990,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update an order status.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
 <p><code>UPDATE api/v1/ordersstatuses</code></p>
-<h3 id='url-parameters-16'>URL Parameters</h3>
+<h3 id='url-parameters-19'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-19'>SCOPES</h3>
+<h3 id='scopes-23'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1793,9 +2044,9 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes an order status. </p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>DELETE api/v1/orderstatuses/:orderstatus_id</code></p>
-<h3 id='url-parameters-17'>URL Parameters</h3>
+<h3 id='url-parameters-20'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1807,7 +2058,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the order status to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-20'>SCOPES</h3>
+<h3 id='scopes-24'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1852,17 +2103,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new category.</p>
-<h3 id='http-request-21'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>POST api/v1/categories</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-18'>URL Parameters</h3>
+<h3 id='url-parameters-21'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-21'>SCOPES</h3>
+<h3 id='scopes-25'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires **ADMIN</em>* token to access.*</li>
 </ul>
@@ -1928,15 +2179,15 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all categories. </p>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>GET api/v1/categories</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/categories">GET Categories All</a></p>
-<h3 id='url-query-4'>URL Query</h3>
+<h3 id='url-query-5'>URL Query</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-22'>SCOPES</h3>
+<h3 id='scopes-26'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1973,11 +2224,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific order. </p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>GET api/v1/categories/:category_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/category/1">GET a specific category Id 1</a></p>
-<h3 id='url-parameters-19'>URL Parameters</h3>
+<h3 id='url-parameters-22'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1989,7 +2240,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the category to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-23'>SCOPES</h3>
+<h3 id='scopes-27'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -2031,17 +2282,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint will update a specific category.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>UPDATE api/v1/categories</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-20'>URL Parameters</h3>
+<h3 id='url-parameters-23'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-24'>SCOPES</h3>
+<h3 id='scopes-28'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an ADMIN authentication token to access.</li>
 </ul>
@@ -2114,17 +2365,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific category.</p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>DELETE api/v1/categories/:category_id</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-21'>URL Parameters</h3>
+<h3 id='url-parameters-24'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-25'>SCOPES</h3>
+<h3 id='scopes-29'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -2177,13 +2428,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint will generate unique URLS to enable the front end client to upload pictures to AWS S3s</p>
-<h3 id='http-request-26'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>POST api/v1/upload</code></p>
-<h3 id='url-parameters-22'>URL Parameters</h3>
+<h3 id='url-parameters-25'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-26'>SCOPES</h3>
+<h3 id='scopes-30'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires a user to be  **Logged In</em>* to access.*</li>
 </ul>
@@ -2235,7 +2486,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="err">...</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a feed list.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>GET api/v1/feeds?page=1&amp;limit=15</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15">GET Feed</a></p>
@@ -2245,7 +2496,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p><code>GET api/v1/feeds?page=1&amp;limit=15&amp;max_price=500&amp;user_id=1</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15&amp;max_price=500&amp;user_id=1">GET Feed Filtered by Max Price and User ID</a></p>
-<h3 id='url-query-5'>URL Query</h3>
+<h3 id='url-query-6'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2289,7 +2540,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-27'>SCOPES</h3>
+<h3 id='scopes-31'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -2373,13 +2624,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint will create a charge for a product. If successful it will generate an order.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
 <p><code>POST api/v1/payments/stripe/charge</code></p>
-<h3 id='url-parameters-23'>URL Parameters</h3>
+<h3 id='url-parameters-26'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-28'>SCOPES</h3>
+<h3 id='scopes-32'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
