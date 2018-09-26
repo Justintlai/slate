@@ -630,12 +630,6 @@ limit | set the size of the page limit | optional (default to 15)
 {
   "x-auth-token":"token"
 }
-// --------
-// BODY
-// --------
-{
-   "following_id": 6
-}
 ```
 
 > RESPONSE:
@@ -658,11 +652,13 @@ This endpoint deletes a follower from the logged in user's follower list.
 
 ### HTTP Request
 
-`DELETE api/v1/followers/`
+`DELETE api/v1/followers/:follower_id`
 
 ### URL Parameters
 
-* *No parameters required*
+Parameter | Description
+--------- | -----------
+follower_id | The id of the user to unfollow
 
 ### SCOPES
 
