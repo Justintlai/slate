@@ -1051,12 +1051,6 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
-</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
-</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
-</span><span class="p">{</span><span class="w">
-   </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>RESPONSE:</p>
@@ -1075,11 +1069,19 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span></code></pre>
 <p>This endpoint deletes a follower from the logged in user&#39;s follower list. </p>
 <h3 id='http-request-10'>HTTP Request</h3>
-<p><code>DELETE api/v1/followers/</code></p>
+<p><code>DELETE api/v1/followers/:follower_id</code></p>
 <h3 id='url-parameters-8'>URL Parameters</h3>
-<ul>
-<li><em>No parameters required</em></li>
-</ul>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>follower_id</td>
+<td>The id of the user to unfollow</td>
+</tr>
+</tbody></table>
 <h3 id='scopes-10'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires Facebook Login to Authenticate</em></li>

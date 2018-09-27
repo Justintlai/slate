@@ -671,6 +671,348 @@ follower_id | The id of the user to unfollow
 -->
 
 
+# Addresses
+
+<!---
+======================================================================================================================================
+-->
+
+
+## CREATE an Address
+
+> REQUEST: 
+
+```json
+{
+    "address_type": "delivery",    (delivery or billing ONLY)
+    "address_name": "Shoreditch Home",
+    "address1": "Flat 5",
+    "address2": "176 Shoreditch High Street",
+    "city": "London",
+    "postcode": "E1 6AX",
+    "country": "United Kingdom",
+    "country_code": "UK",
+    "primary_YN": true
+}
+```
+
+> RESPONSE:
+
+```json
+{
+  "data": {
+      "user_id": 17,
+      "address_type": "delivery", 
+      "address_name": "Shoreditch Home",
+      "address1": "Flat 5",
+      "address2": "176 Shoreditch High Street",
+      "city": "London",
+      "postcode": "E1 6AX",
+      "country": "United Kingdom",
+      "country_code": "UK",
+      "primary_YN": true
+  },
+  "info": "Success: Address data successfully created"
+}
+```
+
+This endpoint creates a new address.
+
+### HTTP Request
+
+`POST api/v1/addresses`
+
+### URL Parameters
+
+* *No parameters required*
+
+### SCOPES
+
+* *This endpoint requires an authentication token to access.*
+
+
+<!---
+======================================================================================================================================
+-->
+
+
+## GET an Address for an User
+
+> RESPONSE:
+
+```json
+{
+    "data": {
+        "count": 1,
+        "rows": [
+            {
+                "id": 1,
+                "user_id": 17,
+                "address_type": "delivery",
+                "address_name": "Shoreditch Home",
+                "address1": "Flat 5",
+                "address2": "176 Shoreditch High Street",
+                "address3": null,
+                "address4": null,
+                "city": "London",
+                "county": null,
+                "postcode": "E1 6AX",
+                "country": "United Kingdom",
+                "country_code": "UK",
+                "primary_YN": false,
+                "created_at": "2018-09-26T07:42:56.000Z",
+                "updated_at": "2018-09-26T07:54:59.000Z"
+            }
+        ]
+    },
+    "info": "Success: Address data successfully retrieved"
+}
+```
+
+This endpoint retrieves a list of addresses for user specified. 
+
+### HTTP Request
+
+`GET api/v1/addresses/:user_id`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+user_id | The id of the product to retrieve
+
+### SCOPES
+
+* *No permission required*
+
+<!---
+======================================================================================================================================
+-->
+
+## GET Address list
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "data": {
+        "count": 1,
+        "rows": [
+            {
+                "id": 1,
+                "user_id": 17,
+                "address_type": "delivery",
+                "address_name": "Shoreditch Home",
+                "address1": "Flat 5",
+                "address2": "176 Shoreditch High Street",
+                "address3": null,
+                "address4": null,
+                "city": "London",
+                "county": null,
+                "postcode": "E1 6AX",
+                "country": "United Kingdom",
+                "country_code": "UK",
+                "primary_YN": false,
+                "created_at": "2018-09-26T07:42:56.000Z",
+                "updated_at": "2018-09-26T07:54:59.000Z"
+            }
+        ]
+    },
+    "info": "Success: Address data successfully retrieved"
+}
+```
+
+This endpoint retrieves a list of all addresses for the logged in user. 
+
+### HTTP Request
+
+`GET api/v1/addresses`
+
+`GET api/v1/addresses/?page=1&limit=20`
+
+### URL Query
+
+Parameter | Description | required?
+--------- | ----------- | ------------
+page | set the page number to retrieve | optional (default to 1)
+limit | set the size of the page limit | optional (default to 15)
+
+### SCOPES
+
+* *You must be logged in to access this endpoint*
+
+
+<!---
+======================================================================================================================================
+-->
+
+## UPDATE an Address
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+// --------
+// BODY
+// --------
+{
+    "address_type": "delivery",
+    "address_name": "Shoreditch Home",
+    "address1": "Flat 5",
+    "address2": "176 Shoreditch High Street",
+    "city": "London",
+    "postcode": "E1 6AX",
+    "country": "United Kingdom",
+    "country_code": "GB",
+    "primary_YN": true,
+}
+```
+
+> RESPONSE:
+
+```json
+{
+    "data": {
+        "user_id": 17,
+        "address_type": "delivery",
+        "address_name": "New Name",
+        "address1": "Flat 5",
+        "address2": "176 Shoreditch High Street",
+        "address3": null,
+        "address4": null,
+        "city": "London",
+        "county": null,
+        "postcode": "E1 6AX",
+        "country": "United Kingdom",
+        "country_code": "UK",
+        "primary_YN": false
+    },
+    "info": "Success: Address data successfully updated"
+}
+```
+
+This endpoint update an address.
+
+For country codes see: https://www.nationsonline.org/oneworld/country_code_list.htm
+
+### HTTP Request
+
+`UPDATE api/v1/addresses/:address_id`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+address_id | The id of the address to be deleted
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
+
+### FIELDS
+
+These fields are available to be updated:
+
+Field | Description | Permission
+--------- | ----------- | ---------
+address_type | billing or delivery | loggedIn
+address_name | the name of the address given by user |  loggedIn
+address1 | first line of address | loggedIn
+address2 |  second line of address | loggedIn
+address3 | third line of address | loggedIn
+address4 | fourth line of address | loggedIn
+city | city |  loggedIn
+county | county see above list of names of countries | loggedIn
+postcode |  postcode area | loggedIn
+country |  name of the country | loggedIn
+country_code | country code - 2 characters (see above for list) | loggedIn
+primary_YN | description of the product |  loggedIn
+
+<!---
+======================================================================================================================================
+-->
+
+## DELETE a Product
+
+
+> REQUEST: 
+
+```json
+// --------
+// HEADER
+// --------
+{
+  "x-auth-token":"token"
+}
+
+```
+
+> RESPONSE:
+
+```json
+{
+    "data": {
+        "id": 5,
+        "user_id": 17,
+        "address_type": "delivery",
+        "address_name": "Shoreditch Home",
+        "address1": "Flat 5",
+        "address2": "176 Shoreditch High Street",
+        "address3": null,
+        "address4": null,
+        "city": "London",
+        "county": null,
+        "postcode": "E1 6AX",
+        "country": "United Kingdom",
+        "country_code": "UK",
+        "primary_YN": false,
+        "created_at": "2018-09-26T07:55:22.000Z",
+        "updated_at": "2018-09-26T07:58:35.000Z"
+    },
+    "info": "Success: Addresses 5 data successfully deleted!"
+}
+```
+
+This endpoint deletes an address. 
+
+### HTTP Request
+
+`DELETE api/v1/adresses/:address_id`
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+address_id | The id of the address to be deleted
+
+### SCOPES
+
+* This endpoint requires an authentication token to access.
+
+
+
+<!---
+======================================================================================================================================
+-->
+
+
 # Products
 
 <!---
