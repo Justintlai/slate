@@ -783,7 +783,7 @@ user_id | The id of the product to retrieve
 
 ### SCOPES
 
-* *No permission required*
+* *This endpoint requires an authentication token to access.*
 
 <!---
 ======================================================================================================================================

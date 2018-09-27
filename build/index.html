@@ -267,6 +267,26 @@
               </ul>
           </li>
           <li>
+            <a href="#addresses" class="toc-h1 toc-link" data-title="Addresses">Addresses</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-an-address" class="toc-h2 toc-link" data-title="CREATE an Address">CREATE an Address</a>
+                  </li>
+                  <li>
+                    <a href="#get-an-address-for-an-user" class="toc-h2 toc-link" data-title="GET an Address for an User">GET an Address for an User</a>
+                  </li>
+                  <li>
+                    <a href="#get-address-list" class="toc-h2 toc-link" data-title="GET Address list">GET Address list</a>
+                  </li>
+                  <li>
+                    <a href="#update-an-address" class="toc-h2 toc-link" data-title="UPDATE an Address">UPDATE an Address</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-product" class="toc-h2 toc-link" data-title="DELETE a Product">DELETE a Product</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#products" class="toc-h1 toc-link" data-title="Products">Products</a>
               <ul class="toc-list-h2">
                   <li>
@@ -282,7 +302,7 @@
                     <a href="#update-a-product" class="toc-h2 toc-link" data-title="UPDATE a Product">UPDATE a Product</a>
                   </li>
                   <li>
-                    <a href="#delete-a-product" class="toc-h2 toc-link" data-title="DELETE a Product">DELETE a Product</a>
+                    <a href="#delete-a-product-2" class="toc-h2 toc-link" data-title="DELETE a Product">DELETE a Product</a>
                   </li>
               </ul>
           </li>
@@ -1090,6 +1110,390 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
+<h1 id='addresses'>Addresses</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-an-address'>CREATE an Address</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">    </span><span class="err">(delivery</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">billing</span><span class="w"> </span><span class="err">ONLY)</span><span class="w">
+    </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address data successfully created"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new address.</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>POST api/v1/addresses</code></p>
+<h3 id='url-parameters-9'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-11'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires an authentication token to access.</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-an-address-for-an-user'>GET an Address for an User</h2>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:42:56.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:54:59.000Z"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address data successfully retrieved"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a list of addresses for user specified. </p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>GET api/v1/addresses/:user_id</code></p>
+<h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>The id of the product to retrieve</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-12'>SCOPES</h3>
+<ul>
+<li><em>No permission required</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='get-address-list'>GET Address list</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:42:56.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:54:59.000Z"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address data successfully retrieved"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a list of all addresses for the logged in user. </p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET api/v1/addresses</code></p>
+
+<p><code>GET api/v1/addresses/?page=1&amp;limit=20</code></p>
+<h3 id='url-query-3'>URL Query</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td>set the page number to retrieve</td>
+<td>optional (default to 1)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>set the size of the page limit</td>
+<td>optional (default to 15)</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-13'>SCOPES</h3>
+<ul>
+<li><em>You must be logged in to access this endpoint</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='update-an-address'>UPDATE an Address</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Name"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address data successfully updated"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint update an address.</p>
+
+<p>For country codes see: https://www.nationsonline.org/oneworld/country_code_list.htm</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>UPDATE api/v1/addresses/:address_id</code></p>
+<h3 id='url-parameters-11'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address_id</td>
+<td>The id of the address to be deleted</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-14'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+<h3 id='fields-3'>FIELDS</h3>
+<p>These fields are available to be updated:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Permission</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address_type</td>
+<td>billing or delivery</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>address_name</td>
+<td>the name of the address given by user</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>address1</td>
+<td>first line of address</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>address2</td>
+<td>second line of address</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>address3</td>
+<td>third line of address</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>address4</td>
+<td>fourth line of address</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>city</td>
+<td>city</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>county</td>
+<td>county see above list of names of countries</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>postcode</td>
+<td>postcode area</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>country</td>
+<td>name of the country</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>country_code</td>
+<td>country code - 2 characters (see above for list)</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>primary_YN</td>
+<td>description of the product</td>
+<td>loggedIn</td>
+</tr>
+</tbody></table>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='delete-a-product'>DELETE a Product</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:55:22.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:58:35.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Addresses 5 data successfully deleted!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes an address. </p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>DELETE api/v1/adresses/:address_id</code></p>
+<h3 id='url-parameters-12'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address_id</td>
+<td>The id of the address to be deleted</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-15'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
 <h1 id='products'>Products</h1>
 <!---
 ======================================================================================================================================
@@ -1163,13 +1567,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new product.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>POST api/v1/products</code></p>
-<h3 id='url-parameters-9'>URL Parameters</h3>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-11'>SCOPES</h3>
+<h3 id='scopes-16'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1216,11 +1620,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific product. </p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET api/v1/products/:product_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/product/1">GET Product Id 1</a></p>
-<h3 id='url-parameters-10'>URL Parameters</h3>
+<h3 id='url-parameters-14'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1232,7 +1636,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-12'>SCOPES</h3>
+<h3 id='scopes-17'>SCOPES</h3>
 <ul>
 <li><em>No permission required</em></li>
 </ul>
@@ -1289,7 +1693,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all products for the logged in user. </p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET api/v1/products</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/products">GET User All</a></p>
@@ -1297,7 +1701,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p><code>GET api/v1/products?page=1&amp;limit=20</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/products?page=1&amp;limit=20">GET Products All</a></p>
-<h3 id='url-query-3'>URL Query</h3>
+<h3 id='url-query-4'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1316,7 +1720,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-13'>SCOPES</h3>
+<h3 id='scopes-18'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1373,17 +1777,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update a product.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>UPDATE api/v1/products</code></p>
-<h3 id='url-parameters-11'>URL Parameters</h3>
+<h3 id='url-parameters-15'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-14'>SCOPES</h3>
+<h3 id='scopes-19'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
-<h3 id='fields-3'>FIELDS</h3>
+<h3 id='fields-4'>FIELDS</h3>
 <p>These fields are available to be updated:</p>
 
 <table><thead>
@@ -1423,7 +1827,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
-<h2 id='delete-a-product'>DELETE a Product</h2>
+<h2 id='delete-a-product-2'>DELETE a Product</h2>
 <blockquote>
 <p>REQUEST: </p>
 </blockquote>
@@ -1479,9 +1883,9 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a product. </p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>DELETE api/v1/products/:product_id</code></p>
-<h3 id='url-parameters-12'>URL Parameters</h3>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1493,7 +1897,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-15'>SCOPES</h3>
+<h3 id='scopes-20'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1559,13 +1963,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new order.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST api/v1/orders</code></p>
-<h3 id='url-parameters-13'>URL Parameters</h3>
+<h3 id='url-parameters-17'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-16'>SCOPES</h3>
+<h3 id='scopes-21'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1619,11 +2023,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific order. </p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET api/v1/orders/:order_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders/1">GET order Id 1</a></p>
-<h3 id='url-parameters-14'>URL Parameters</h3>
+<h3 id='url-parameters-18'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1635,7 +2039,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the order to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-17'>SCOPES</h3>
+<h3 id='scopes-22'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1691,7 +2095,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all orders for the logged in user. </p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
 <p><code>GET api/v1/orders</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders">GET User All</a></p>
@@ -1699,7 +2103,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p><code>GET api/v1/orders?page=1&amp;limit=20</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders?page=1&amp;limit=20">GET Orders All</a></p>
-<h3 id='url-query-4'>URL Query</h3>
+<h3 id='url-query-5'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1718,7 +2122,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-18'>SCOPES</h3>
+<h3 id='scopes-23'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1775,17 +2179,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update a order.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>UPDATE api/v1/orders</code></p>
-<h3 id='url-parameters-15'>URL Parameters</h3>
+<h3 id='url-parameters-19'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-19'>SCOPES</h3>
+<h3 id='scopes-24'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
-<h3 id='fields-4'>FIELDS</h3>
+<h3 id='fields-5'>FIELDS</h3>
 <p>These fields are available to be updated:</p>
 
 <table><thead>
@@ -1837,13 +2241,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a order. </p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>DELETE api/v1/orders/:order_id</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-16'>URL Parameters</h3>
+<h3 id='url-parameters-20'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1855,7 +2259,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-20'>SCOPES</h3>
+<h3 id='scopes-25'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1900,13 +2304,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new order status.</p>
-<h3 id='http-request-21'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>POST api/v1/orderstatuses</code></p>
-<h3 id='url-parameters-17'>URL Parameters</h3>
+<h3 id='url-parameters-21'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-21'>SCOPES</h3>
+<h3 id='scopes-26'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1949,15 +2353,15 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all order statuses. </p>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>GET api/v1/ordersstatuses</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orderstatuses">GET Order Statuses All</a></p>
-<h3 id='url-parameters-18'>URL Parameters</h3>
+<h3 id='url-parameters-22'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-22'>SCOPES</h3>
+<h3 id='scopes-27'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1992,17 +2396,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update an order status.</p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>UPDATE api/v1/ordersstatuses</code></p>
-<h3 id='url-parameters-19'>URL Parameters</h3>
+<h3 id='url-parameters-23'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-23'>SCOPES</h3>
+<h3 id='scopes-28'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
-<h3 id='fields-5'>FIELDS</h3>
+<h3 id='fields-6'>FIELDS</h3>
 <p>These fields are available to be updated:</p>
 
 <table><thead>
@@ -2046,9 +2450,9 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes an order status. </p>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>DELETE api/v1/orderstatuses/:orderstatus_id</code></p>
-<h3 id='url-parameters-20'>URL Parameters</h3>
+<h3 id='url-parameters-24'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2060,7 +2464,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the order status to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-24'>SCOPES</h3>
+<h3 id='scopes-29'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -2105,17 +2509,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new category.</p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>POST api/v1/categories</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-21'>URL Parameters</h3>
+<h3 id='url-parameters-25'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-25'>SCOPES</h3>
+<h3 id='scopes-30'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires **ADMIN</em>* token to access.*</li>
 </ul>
@@ -2181,15 +2585,15 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all categories. </p>
-<h3 id='http-request-26'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>GET api/v1/categories</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/categories">GET Categories All</a></p>
-<h3 id='url-query-5'>URL Query</h3>
+<h3 id='url-query-6'>URL Query</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-26'>SCOPES</h3>
+<h3 id='scopes-31'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -2226,11 +2630,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific order. </p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
 <p><code>GET api/v1/categories/:category_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/category/1">GET a specific category Id 1</a></p>
-<h3 id='url-parameters-22'>URL Parameters</h3>
+<h3 id='url-parameters-26'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2242,7 +2646,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the category to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-27'>SCOPES</h3>
+<h3 id='scopes-32'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -2284,21 +2688,21 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint will update a specific category.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
 <p><code>UPDATE api/v1/categories</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-23'>URL Parameters</h3>
+<h3 id='url-parameters-27'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-28'>SCOPES</h3>
+<h3 id='scopes-33'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an ADMIN authentication token to access.</li>
 </ul>
-<h3 id='fields-6'>FIELDS</h3>
+<h3 id='fields-7'>FIELDS</h3>
 <p>These fields are available to be updated:</p>
 
 <table><thead>
@@ -2367,17 +2771,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific category.</p>
-<h3 id='http-request-29'>HTTP Request</h3>
+<h3 id='http-request-34'>HTTP Request</h3>
 <p><code>DELETE api/v1/categories/:category_id</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-24'>URL Parameters</h3>
+<h3 id='url-parameters-28'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-29'>SCOPES</h3>
+<h3 id='scopes-34'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -2430,13 +2834,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint will generate unique URLS to enable the front end client to upload pictures to AWS S3s</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
 <p><code>POST api/v1/upload</code></p>
-<h3 id='url-parameters-25'>URL Parameters</h3>
+<h3 id='url-parameters-29'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-30'>SCOPES</h3>
+<h3 id='scopes-35'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires a user to be  **Logged In</em>* to access.*</li>
 </ul>
@@ -2488,7 +2892,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="err">...</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a feed list.</p>
-<h3 id='http-request-31'>HTTP Request</h3>
+<h3 id='http-request-36'>HTTP Request</h3>
 <p><code>GET api/v1/feeds?page=1&amp;limit=15</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15">GET Feed</a></p>
@@ -2498,7 +2902,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p><code>GET api/v1/feeds?page=1&amp;limit=15&amp;max_price=500&amp;user_id=1</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15&amp;max_price=500&amp;user_id=1">GET Feed Filtered by Max Price and User ID</a></p>
-<h3 id='url-query-6'>URL Query</h3>
+<h3 id='url-query-7'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2542,7 +2946,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-31'>SCOPES</h3>
+<h3 id='scopes-36'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -2626,13 +3030,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint will create a charge for a product. If successful it will generate an order.</p>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-37'>HTTP Request</h3>
 <p><code>POST api/v1/payments/stripe/charge</code></p>
-<h3 id='url-parameters-26'>URL Parameters</h3>
+<h3 id='url-parameters-30'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-32'>SCOPES</h3>
+<h3 id='scopes-37'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
