@@ -779,7 +779,7 @@ This endpoint retrieves a list of addresses for user specified.
 
 Parameter | Description
 --------- | -----------
-user_id | The id of the product to retrieve
+user_id | The id of the user's address to retrieve
 
 ### SCOPES
 
