@@ -437,6 +437,7 @@ admin_YN | Determine whether a user has admin rights | admin
 -->
 
 
+
 ## DELETE a user
 
 > REQUEST: 
