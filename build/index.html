@@ -227,6 +227,9 @@
                   <li>
                     <a href="#manual-email-login" class="toc-h2 toc-link" data-title="Manual Email login">Manual Email login</a>
                   </li>
+                  <li>
+                    <a href="#facebook-login" class="toc-h2 toc-link" data-title="Facebook login">Facebook login</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -247,6 +250,18 @@
                   <li>
                     <a href="#delete-a-user" class="toc-h2 toc-link" data-title="DELETE a user">DELETE a user</a>
                   </li>
+                  <li>
+                    <a href="#check-username" class="toc-h2 toc-link" data-title="CHECK username">CHECK username</a>
+                  </li>
+                  <li>
+                    <a href="#resend-email" class="toc-h2 toc-link" data-title="RESEND email">RESEND email</a>
+                  </li>
+                  <li>
+                    <a href="#verify-email" class="toc-h2 toc-link" data-title="VERIFY email">VERIFY email</a>
+                  </li>
+                  <li>
+                    <a href="#read-current" class="toc-h2 toc-link" data-title="READ current">READ current</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -256,7 +271,7 @@
                     <a href="#create-a-new-follower" class="toc-h2 toc-link" data-title="CREATE a new follower">CREATE a new follower</a>
                   </li>
                   <li>
-                    <a href="#read-a-specific-user-39-s-follower-list" class="toc-h2 toc-link" data-title="READ a Specific User's Follower List">READ a Specific User's Follower List</a>
+                    <a href="#read-a-list-of-following" class="toc-h2 toc-link" data-title="READ a list of following">READ a list of following</a>
                   </li>
                   <li>
                     <a href="#read-a-list-of-followers" class="toc-h2 toc-link" data-title="READ a list of followers">READ a list of followers</a>
@@ -282,7 +297,7 @@
                     <a href="#update-an-address" class="toc-h2 toc-link" data-title="UPDATE an Address">UPDATE an Address</a>
                   </li>
                   <li>
-                    <a href="#delete-a-product" class="toc-h2 toc-link" data-title="DELETE a Product">DELETE a Product</a>
+                    <a href="#delete-an-address" class="toc-h2 toc-link" data-title="DELETE an Address">DELETE an Address</a>
                   </li>
               </ul>
           </li>
@@ -302,7 +317,7 @@
                     <a href="#update-a-product" class="toc-h2 toc-link" data-title="UPDATE a Product">UPDATE a Product</a>
                   </li>
                   <li>
-                    <a href="#delete-a-product-2" class="toc-h2 toc-link" data-title="DELETE a Product">DELETE a Product</a>
+                    <a href="#delete-a-product" class="toc-h2 toc-link" data-title="DELETE a Product">DELETE a Product</a>
                   </li>
               </ul>
           </li>
@@ -407,14 +422,15 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Minto API! You can use our API to access Minto API endpoints, which can get information on various products in our database.</p>
+<p>Welcome to the Minto API! You can use our API to access Minto API endpoints, which can get information on various data sets in our database.</p>
 
 <p>We have language bindings in JavaScript only! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">//Header</span><span class="w">
+  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"token"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -422,7 +438,7 @@
 <p>Make sure to replace <code>token</code> with your uniquely generated token.</p>
 </blockquote>
 
-<p>Minto uses Passport&#39;s <code>facebook-token</code> and pure email and password as part of the authentication process.</p>
+<p>Minto uses Passport&#39;s <code>facebook-token</code> and email and password as part of the authentication process.</p>
 
 <p>Once a user is verified by the Facebook Login process a <code>x-auth-token</code> is using JWT is generated and sent.</p>
 
@@ -440,8 +456,6 @@ You must replace <code>token</code> with your personal token.
 <p>REQUEST: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"doe"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"john.doe@hotmail.co.uk"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"password"</span><span class="p">:</span><span class="s2">"password"</span><span class="w">
@@ -451,31 +465,26 @@ You must replace <code>token</code> with your personal token.
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"justin"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lai"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"justintlai"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"justin.t.lai@hotmail.co.uk"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fb_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fb_token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email_verified_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"seller_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"disabled_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"admin_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"deleted_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-09T19:56:41.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-09T19:56:41.000Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User Found"</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe@hotmail.co.uk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bank_sort_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bank_account_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email_verified_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seller_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Login successful"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint will create a new user or login an existing user.</p>
+<p>This endpoint will log an existing user into the application. The user can login with either email or username.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST api/v1/auth/login</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -486,41 +495,40 @@ You must replace <code>token</code> with your personal token.
 <ul>
 <li><em>This endpoint requires Facebook Login to Authenticate</em></li>
 </ul>
-<h1 id='users'>Users</h1>
+
 <!---
 ======================================================================================================================================
 -->
-<h2 id='create-a-new-user'>CREATE a new user</h2>
+<h2 id='facebook-login'>Facebook login</h2>
 <blockquote>
-<p>REQUEST: </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
+<p>REQUEST: 
+// Header
+<code>json
+{
+    &quot;Authorization&quot;: &quot;Beaer EALCNsjwwwLNSWisikwFal...&quot;
+}
+</code></p>
+
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST create new user"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully created"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Justin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lai"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"just_in_88@hotmail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://graph.facebook.com/v2.6/10156690772858296/picture?type=large"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email_verified_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seller_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Login successful"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint creates a new user.</p>
+<p>This endpoint will log a Facebook user automatically based on their Facebook Login Credentials</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST api/v1/users</code></p>
+<p><code>POST api/v1/auth/facebook</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
@@ -533,35 +541,94 @@ You must replace <code>token</code> with your personal token.
 <!---
 ======================================================================================================================================
 -->
+<h1 id='users'>Users</h1>
+<!---
+======================================================================================================================================
+-->
+<h2 id='create-a-new-user'>CREATE a new user</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe@hotmail.co.uk"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe@hotmail.co.uk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bank_sort_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bank_account_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email_verified_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seller_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Login successful"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will execute the following events:
+    - Create a new user
+    - Send an email verification email.
+    - Automatically login the user (Auth token is sent)</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST api/v1/users</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-3'>SCOPES</h3>
+<ul>
+<li><em>This endpoint requires Facebook Login to Authenticate</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
 <h2 id='read-a-specific-user'>READ a Specific User</h2>
 <blockquote>
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET user"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully retrieved"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mark"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robins"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://source.unsplash.com/collection/888146/300x300"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_following"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_products"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_following"</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_products"</span><span class="p">:</span><span class="w"> </span><span class="mi">155</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific user. </p>
 
 <p>It will return a users profile along with the number of followers, likes and profile picture.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET api/v1/users/:user_id</code></p>
 
-<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/users/1">GET User Id 1</a></p>
-<h3 id='url-parameters-3'>URL Parameters</h3>
+<p>Example: <a href="https://api-dev.minto.app/api/v1/users/1">GET User Id 1</a></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -573,7 +640,7 @@ You must replace <code>token</code> with your personal token.
 <td>The id of the user to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-3'>SCOPES</h3>
+<h3 id='scopes-4'>SCOPES</h3>
 <ul>
 <li><em>No permission required</em></li>
 </ul>
@@ -586,33 +653,38 @@ You must replace <code>token</code> with your personal token.
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET All users"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully retrieved"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mark"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robins"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins@gmail.com"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://source.unsplash.com/collection/888146/300x300"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"email_verified_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"seller_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"disabled_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"admin_YN"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"total_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"total_following"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"total_products"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
-        </span><span class="p">}</span><span class="err">...</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"annadoe"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_following"</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_products"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_following"</span><span class="p">:</span><span class="w"> </span><span class="mi">77</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_products"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all users. </p>
 
 <p>You can optionally add parameters to further define your output but defaults are applied if nothing is supplied.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET api/v1/users/</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/users">GET User All</a></p>
@@ -643,7 +715,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-4'>SCOPES</h3>
+<h3 id='scopes-5'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an admin authorisation token to access.</li>
 </ul>
@@ -671,6 +743,10 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <tr>
 <td>email</td>
 <td>The email address linked to their facebook account</td>
+</tr>
+<tr>
+<td>password</td>
+<td>The user&#39;s password details</td>
 </tr>
 <tr>
 <td>profile_URL</td>
@@ -727,34 +803,42 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
 </span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Builder"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT  user 18's header profile page"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Builder"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe@hotmail.co.uk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bank_sort_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bank_account_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email_verified_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seller_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully updated"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonDoe"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint creates a new user.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<p>This endpoint updates a user&#39;s personal details. It can also be used to update a user&#39;s password.
+However, it will not update protected parameters such as <code>seller_YN</code> unless you have ADMIN rights.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>UPDATE api/v1/users/</code></p>
-<h3 id='url-parameters-4'>URL Parameters</h3>
+<h3 id='url-parameters-5'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-5'>SCOPES</h3>
+<h3 id='scopes-6'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -828,45 +912,209 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
-</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe@hotmail.co.uk"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$2a$08$nx1pby98iZ//Vj.jpSoj.urj1w5k/rmjQKxuzfLINSPjgwkHq7Wu2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bank_sort_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bank_account_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fb_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fb_token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJiYkBob3RtYWlsLmNvLnVrIiwiaWF0IjoxNTM5ODU5OTYyLCJleHAiOjE1Mzk5NDYzNjJ9.-_dOJFufpvIlMA9ahvXiLs-e8aawg5siNyqnNUkZoL8"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"national_id_URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email_verified_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seller_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"disabled_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deleted_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-18T10:52:42.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-18T10:52:42.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully updated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a user completely from the database. 
+It should remove any trace of a user.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>DELETE api/v1/users/</code></p>
+
+<aside class="notice">
+This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
+</aside>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<ul>
+<li><em>No parameters required</em></li>
+</ul>
+<h3 id='scopes-7'>SCOPES</h3>
+<ul>
+<li>This endpoint requires an authentication token to access.</li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='check-username'>CHECK username</h2>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Username is available"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will verify username availability.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET api/v1/users/username_availability/:username</code></p>
+
+<p>Example: <a href="https://api-dev.minto.app/api/v1/users/username_availability/isthisavailable">GET User Id 1</a></p>
+<h3 id='url-parameters-7'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>The username to be checked</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-8'>SCOPES</h3>
+<ul>
+<li><em>No permission required</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='resend-email'>RESEND email</h2>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will resend an email to a user to enable them to verify their account.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET api/v1/users/resend_verify_email/:token</code></p>
+
+<p>Example: <a href="https://api-dev.minto.app/api/v1/users/resend_verify_email/token">GET User Id 1</a></p>
+<h3 id='url-parameters-8'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>This should receive a <code>JWT</code> token to enable verification of the user&#39;s email.</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-9'>SCOPES</h3>
+<ul>
+<li><em>No permission required</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='verify-email'>VERIFY email</h2>
+<blockquote>
+<p>RESPONSE:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will verify a user&#39;s email via the token submitted.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET api/v1/users/verify_email/:token</code></p>
+<h3 id='url-parameters-9'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>This should receive a <code>JWT</code> token to enable verification of the user&#39;s email.</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-10'>SCOPES</h3>
+<ul>
+<li><em>No permission required</em></li>
+</ul>
+
+<!---
+======================================================================================================================================
+-->
+<h2 id='read-current'>READ current</h2>
+<blockquote>
+<p>REQUEST: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">HEADER</span><span class="w">
 </span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="w">
+  </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT  user 18's header profile page"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully updated"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonDoe"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JohnDoe@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_following"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_products"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a user. 
-Currently, this will not completely delete all user actions in the database. It will only delete the user from the user table.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
-<p><code>DELETE api/v1/users/</code></p>
-
-<aside class="notice">
-This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
-</aside>
-<h3 id='url-parameters-5'>URL Parameters</h3>
+<p>This endpoint will get the current logged in user&#39;s profile information</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET api/v1/users/current</code></p>
+<h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>This should receive a <code>JWT</code> token to enable verification of the user&#39;s email.</td>
+</tr>
+</tbody></table>
+<h3 id='scopes-11'>SCOPES</h3>
 <ul>
-<li><em>No parameters required</em></li>
-</ul>
-<h3 id='scopes-6'>SCOPES</h3>
-<ul>
-<li>This endpoint requires an authentication token to access.</li>
+<li><em>No permission required</em></li>
 </ul>
 
 <!---
@@ -886,35 +1134,35 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"x-auth-token"</span><span class="p">:</span><span class="s2">"token"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>REQUEST: </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"folloing_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T05:24:08.000Z"</span><span class="w">
+    </span><span class="s2">"follow"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T08:29:02.000Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Follower data successfully created"</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Follower successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new follower for the user logged in.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
-<p><code>POST api/v1/followers</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>POST api/v1/follows</code></p>
+<h3 id='url-parameters-11'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-7'>SCOPES</h3>
+<h3 id='scopes-12'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires Facebook Login to Authenticate</em></li>
 </ul>
@@ -922,7 +1170,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
-<h2 id='read-a-specific-user-39-s-follower-list'>READ a Specific User&#39;s Follower List</h2>
+<h2 id='read-a-list-of-following'>READ a list of following</h2>
 <blockquote>
 <p>REQUEST: </p>
 </blockquote>
@@ -937,48 +1185,70 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-03T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Follower data successfully retrieved"</span><span class="w">
+    </span><span class="s2">"following"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T07:59:56.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"following"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T07:59:52.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"following"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anna"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"annadoe"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Followers successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific user. </p>
+<p>This endpoint retrieves a the logged in users&#39;s following list. A list of who they are following</p>
 
-<p>It will return a users profile along with the number of followers, likes and profile picture.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET api/v1/followers/:user_id</code></p>
-<h3 id='url-parameters-7'>URL Parameters</h3>
+<p>It will return a users profile along with the number of following and profile picture.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET api/v1/follows/following</code></p>
+
+<p><code>GET api/v1/follows/following?page=1&amp;limit=20</code></p>
+<h3 id='url-query-2'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>required?</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>user_id</td>
-<td>The id of the user to retrieve</td>
+<td>page</td>
+<td>set the page number to retrieve</td>
+<td>optional (default to 1)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>set the size of the page limit</td>
+<td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-8'>SCOPES</h3>
+<h3 id='scopes-13'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires Facebook Login to Authenticate</em></li>
 </ul>
@@ -1001,38 +1271,37 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-03T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-30T08:30:33.000Z"</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Follower data successfully retrieved"</span><span class="w">
+    </span><span class="s2">"following"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T08:02:21.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"follower"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Builder"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bobthebuilder"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Followers successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all follower for the user logged in. </p>
 
 <p>You can optionally add parameters to further define your output but defaults are applied if nothing is supplied.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
-<p><code>GET api/v1/followers/</code></p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>GET api/v1/follows/followers</code></p>
 
-<p><code>GET api/v1/followers?page=1&amp;limit=20</code></p>
-<h3 id='url-query-2'>URL Query</h3>
+<p><code>GET api/v1/follows/followers?page=1&amp;limit=20</code></p>
+<h3 id='url-query-3'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1051,7 +1320,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-9'>SCOPES</h3>
+<h3 id='scopes-14'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires Facebook Login to Authenticate</em></li>
 </ul>
@@ -1074,21 +1343,23 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T11:30:53.000Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T11:30:53.000Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T11:30:53.000Z"</span><span class="w">
+    </span><span class="s2">"follow"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"follower_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"following_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"follow_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T08:02:21.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T08:02:21.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T08:02:21.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: User id 17 has unfollowed user id 6"</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Follower successfully deleted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a follower from the logged in user&#39;s follower list. </p>
-<h3 id='http-request-10'>HTTP Request</h3>
-<p><code>DELETE api/v1/followers/:follower_id</code></p>
-<h3 id='url-parameters-8'>URL Parameters</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>DELETE api/v1/follows/:following_id</code></p>
+<h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1096,11 +1367,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </tr>
 </thead><tbody>
 <tr>
-<td>follower_id</td>
+<td>following_id</td>
 <td>The id of the user to unfollow</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-10'>SCOPES</h3>
+<h3 id='scopes-15'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires Facebook Login to Authenticate</em></li>
 </ul>
@@ -1132,29 +1403,31 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address data successfully created"</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new address.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>POST api/v1/addresses</code></p>
-<h3 id='url-parameters-9'>URL Parameters</h3>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-11'>SCOPES</h3>
+<h3 id='scopes-16'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1167,36 +1440,32 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"address4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:42:56.000Z"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:54:59.000Z"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T09:29:40.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T09:29:40.000Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address data successfully retrieved"</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of addresses for user specified. </p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET api/v1/addresses/:user_id</code></p>
-<h3 id='url-parameters-10'>URL Parameters</h3>
+<h3 id='url-parameters-14'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1208,7 +1477,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the user&#39;s address to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-12'>SCOPES</h3>
+<h3 id='scopes-17'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -1231,12 +1500,12 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
@@ -1247,22 +1516,41 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
                 </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:42:56.000Z"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:54:59.000Z"</span><span class="w">
+                </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T09:29:40.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T09:29:40.000Z"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"billing"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T09:30:09.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T09:30:09.000Z"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address data successfully retrieved"</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all addresses for the logged in user. </p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET api/v1/addresses</code></p>
 
 <p><code>GET api/v1/addresses/?page=1&amp;limit=20</code></p>
-<h3 id='url-query-3'>URL Query</h3>
+<h3 id='url-query-4'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1281,7 +1569,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-13'>SCOPES</h3>
+<h3 id='scopes-18'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1318,9 +1606,10 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"billing"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Name"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
@@ -1330,18 +1619,19 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
         </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address data successfully updated"</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address successfully updated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update an address.</p>
 
 <p>For country codes see: https://www.nationsonline.org/oneworld/country_code_list.htm</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>UPDATE api/v1/addresses/:address_id</code></p>
-<h3 id='url-parameters-11'>URL Parameters</h3>
+<h3 id='url-parameters-15'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1353,7 +1643,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the address to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-14'>SCOPES</h3>
+<h3 id='scopes-19'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1432,7 +1722,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
-<h2 id='delete-a-product'>DELETE a Product</h2>
+<h2 id='delete-an-address'>DELETE an Address</h2>
 <blockquote>
 <p>REQUEST: </p>
 </blockquote>
@@ -1448,11 +1738,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shoreditch Home"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"billing"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Name"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat 5"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"176 Shoreditch High Street"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"address3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1461,18 +1751,19 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
         </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E1 6AX"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Kingdom"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:55:22.000Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-26T07:58:35.000Z"</span><span class="w">
+        </span><span class="s2">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GB"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T09:30:09.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T09:31:56.000Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Addresses 5 data successfully deleted!"</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Address successfully deleted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes an address. </p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>DELETE api/v1/adresses/:address_id</code></p>
-<h3 id='url-parameters-12'>URL Parameters</h3>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1484,7 +1775,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the address to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-15'>SCOPES</h3>
+<h3 id='scopes-20'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1501,80 +1792,110 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>REQUEST: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="err">//Product</span><span class="w"> </span><span class="err">Category</span><span class="w">
-  </span><span class="s2">"category_id"</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"test description"</span><span class="p">,</span><span class="w">
-  </span><span class="err">//Price</span><span class="w">
-  </span><span class="s2">"price"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="err">//Image</span><span class="w"> </span><span class="err">Information</span><span class="w">
-  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image1.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test image description"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image2.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test 2 image description"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"category_id"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Kate Spade New Flying Colours Pave Dash Earrings"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twicely.shop/pub/media/wysiwyg/jewellery-9.jpg"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the image"</span><span class="w">
+  </span><span class="p">},{</span><span class="w">
+    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://another image.jpg"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the image 2"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST create new product"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully created"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonSnow"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:32:10.000Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"King of the North"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:03:19.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Spade New Flying Colours Pave Dash Earrings"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wolves.com"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Wolves"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:32:10.000Z"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twicely.shop/pub/media/wysiwyg/jewellery-9.jpg"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the image"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:03:19.000Z"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">121</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Selfie.com"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon snow"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:32:10.000Z"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://another image.jpg"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the image 2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:03:19.000Z"</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new product.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST api/v1/products</code></p>
-<h3 id='url-parameters-13'>URL Parameters</h3>
+<h3 id='url-parameters-17'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-16'>SCOPES</h3>
+<h3 id='scopes-21'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
+<h3 id='fields-4'>FIELDS</h3>
+<p>These fields are available to use:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Permission</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category_id</td>
+<td>the type of product</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>description</td>
+<td>describe the product</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>price</td>
+<td>cost for the product</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>currency_id</td>
+<td>currency of the product</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>images_URL</td>
+<td>the URL of the AWS S3 image (Array)</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>image_description</td>
+<td>a short description of the product (Array)</td>
+<td>loggedIn</td>
+</tr>
+</tbody></table>
 
 <!---
 ======================================================================================================================================
@@ -1584,45 +1905,49 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET product by ProductID"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product data successfully retrieved"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE-OWNED 9CT YELLOW GOLD FULL KRUGERRAND MOUNT PENDANT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:03:19.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Spade New Flying Colours Pave Dash Earrings"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rachel"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RachelGreen"</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"Images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://picsum.photos/200/300"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison."</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-01T00:00:00.000Z"</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twicely.shop/pub/media/wysiwyg/jewellery-9.jpg"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the image"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:03:19.000Z"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://another image.jpg"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the image 2"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:03:19.000Z"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">538.8</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
+            </span><span class="s2">"Order"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Like"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific product. </p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET api/v1/products/:product_id</code></p>
-
-<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/product/1">GET Product Id 1</a></p>
-<h3 id='url-parameters-14'>URL Parameters</h3>
+<h3 id='url-parameters-18'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1634,7 +1959,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-17'>SCOPES</h3>
+<h3 id='scopes-22'>SCOPES</h3>
 <ul>
 <li><em>No permission required</em></li>
 </ul>
@@ -1657,49 +1982,52 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET  user: 1's product"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product data successfully retrieved"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-07T00:00:00.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRE-OWNED 9CT YELLOW GOLD ONYX SIGNET RING"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mark"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robins"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MarkRobins"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"Images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://picsum.photos/200/300"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bacon ipsum dolor amet shankle porchetta brisket beef alcatra, tongue venison."</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-29T00:00:00.000Z"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"Prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">583.2</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:14:35.000Z"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Spade New Flying Colours Pave Dash Earrings"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"User"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"profile_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://demos.subinsb.com/isl-profile-pic/image/person.png"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"story"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twicely.shop/pub/media/wysiwyg/jewellery-9.jpg"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the image"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:14:35.000Z"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://another image.jpg"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the image 2"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:14:35.000Z"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully retrieved"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all products for the logged in user. </p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
 <p><code>GET api/v1/products</code></p>
 
-<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/products">GET User All</a></p>
-
 <p><code>GET api/v1/products?page=1&amp;limit=20</code></p>
-
-<p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/products?page=1&amp;limit=20">GET Products All</a></p>
-<h3 id='url-query-4'>URL Query</h3>
+<h3 id='url-query-5'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1718,7 +2046,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-18'>SCOPES</h3>
+<h3 id='scopes-23'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -1740,52 +2068,55 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="err">//</span><span class="w"> </span><span class="err">BODY</span><span class="w">
 </span><span class="err">//</span><span class="w"> </span><span class="err">--------</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"category_id"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"test description 23"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"product_id"</span><span class="p">:</span><span class="mi">100</span><span class="w">
+  </span><span class="s2">"category_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"update descr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT  user: 16's product"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:03:19.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"update descr"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twicely.shop/pub/media/wysiwyg/jewellery-9.jpg"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the image"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:03:19.000Z"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://another image.jpg"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is the image 2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:03:19.000Z"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully updated"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snow"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JonSnow"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:17:39.000Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test description 23"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T13:38:35.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint update a product.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<p>This endpoint updates a specific product.</p>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>UPDATE api/v1/products</code></p>
-<h3 id='url-parameters-15'>URL Parameters</h3>
+<h3 id='url-parameters-19'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-19'>SCOPES</h3>
+<h3 id='scopes-24'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
-<h3 id='fields-4'>FIELDS</h3>
+<h3 id='fields-5'>FIELDS</h3>
 <p>These fields are available to be updated:</p>
 
 <table><thead>
@@ -1806,18 +2137,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>loggedIn</td>
 </tr>
 <tr>
-<td>shipping_YN</td>
-<td>seller allowing shipping conditions</td>
-<td>loggedIn</td>
-</tr>
-<tr>
-<td>meet_in_person_YN</td>
-<td>seller will meet in person to exchange goods</td>
-<td>loggedIn</td>
-</tr>
-<tr>
 <td>price</td>
-<td>update the price of the product</td>
+<td>price of the product</td>
+<td>loggedIn</td>
+</tr>
+<tr>
+<td>currency_id</td>
+<td>currency of the product</td>
 <td>loggedIn</td>
 </tr>
 </tbody></table>
@@ -1825,7 +2151,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <!---
 ======================================================================================================================================
 -->
-<h2 id='delete-a-product-2'>DELETE a Product</h2>
+<h2 id='delete-a-product'>DELETE a Product</h2>
 <blockquote>
 <p>REQUEST: </p>
 </blockquote>
@@ -1841,49 +2167,27 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p>RESPONSE:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"DEBUG"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE  productId: 103"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:03:19.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"update descr"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:03:19.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-19T14:26:31.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success: Product successfully deleted"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"category_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test description"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"shipping_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"meet_in_person_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"currency_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"entry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"active_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"image_URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image1.com"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"image_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test image description"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"image_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"primary_YN"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-13T12:22:17.000Z"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a product. </p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>DELETE api/v1/products/:product_id</code></p>
-<h3 id='url-parameters-16'>URL Parameters</h3>
+<h3 id='url-parameters-20'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1895,7 +2199,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-20'>SCOPES</h3>
+<h3 id='scopes-25'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -1961,13 +2265,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new order.</p>
-<h3 id='http-request-21'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>POST api/v1/orders</code></p>
-<h3 id='url-parameters-17'>URL Parameters</h3>
+<h3 id='url-parameters-21'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-21'>SCOPES</h3>
+<h3 id='scopes-26'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -2021,11 +2325,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific order. </p>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>GET api/v1/orders/:order_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders/1">GET order Id 1</a></p>
-<h3 id='url-parameters-18'>URL Parameters</h3>
+<h3 id='url-parameters-22'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2037,7 +2341,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the order to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-22'>SCOPES</h3>
+<h3 id='scopes-27'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -2093,7 +2397,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all orders for the logged in user. </p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>GET api/v1/orders</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders">GET User All</a></p>
@@ -2101,7 +2405,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p><code>GET api/v1/orders?page=1&amp;limit=20</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orders?page=1&amp;limit=20">GET Orders All</a></p>
-<h3 id='url-query-5'>URL Query</h3>
+<h3 id='url-query-6'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2120,7 +2424,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional (default to 15)</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-23'>SCOPES</h3>
+<h3 id='scopes-28'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -2177,17 +2481,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update a order.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>UPDATE api/v1/orders</code></p>
-<h3 id='url-parameters-19'>URL Parameters</h3>
+<h3 id='url-parameters-23'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-24'>SCOPES</h3>
+<h3 id='scopes-29'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
-<h3 id='fields-5'>FIELDS</h3>
+<h3 id='fields-6'>FIELDS</h3>
 <p>These fields are available to be updated:</p>
 
 <table><thead>
@@ -2239,13 +2543,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a order. </p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>DELETE api/v1/orders/:order_id</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-20'>URL Parameters</h3>
+<h3 id='url-parameters-24'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2257,7 +2561,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the product to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-25'>SCOPES</h3>
+<h3 id='scopes-30'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -2302,13 +2606,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new order status.</p>
-<h3 id='http-request-26'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>POST api/v1/orderstatuses</code></p>
-<h3 id='url-parameters-21'>URL Parameters</h3>
+<h3 id='url-parameters-25'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-26'>SCOPES</h3>
+<h3 id='scopes-31'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -2351,15 +2655,15 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all order statuses. </p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
 <p><code>GET api/v1/ordersstatuses</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/orderstatuses">GET Order Statuses All</a></p>
-<h3 id='url-parameters-22'>URL Parameters</h3>
+<h3 id='url-parameters-26'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-27'>SCOPES</h3>
+<h3 id='scopes-32'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -2394,17 +2698,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update an order status.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
 <p><code>UPDATE api/v1/ordersstatuses</code></p>
-<h3 id='url-parameters-23'>URL Parameters</h3>
+<h3 id='url-parameters-27'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-28'>SCOPES</h3>
+<h3 id='scopes-33'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
-<h3 id='fields-6'>FIELDS</h3>
+<h3 id='fields-7'>FIELDS</h3>
 <p>These fields are available to be updated:</p>
 
 <table><thead>
@@ -2448,9 +2752,9 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes an order status. </p>
-<h3 id='http-request-29'>HTTP Request</h3>
+<h3 id='http-request-34'>HTTP Request</h3>
 <p><code>DELETE api/v1/orderstatuses/:orderstatus_id</code></p>
-<h3 id='url-parameters-24'>URL Parameters</h3>
+<h3 id='url-parameters-28'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2462,7 +2766,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the order status to be deleted</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-29'>SCOPES</h3>
+<h3 id='scopes-34'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -2507,17 +2811,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a new category.</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
 <p><code>POST api/v1/categories</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-25'>URL Parameters</h3>
+<h3 id='url-parameters-29'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-30'>SCOPES</h3>
+<h3 id='scopes-35'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires **ADMIN</em>* token to access.*</li>
 </ul>
@@ -2583,15 +2887,15 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a list of all categories. </p>
-<h3 id='http-request-31'>HTTP Request</h3>
+<h3 id='http-request-36'>HTTP Request</h3>
 <p><code>GET api/v1/categories</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/categories">GET Categories All</a></p>
-<h3 id='url-query-6'>URL Query</h3>
+<h3 id='url-query-7'>URL Query</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-31'>SCOPES</h3>
+<h3 id='scopes-36'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -2628,11 +2932,11 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific order. </p>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-37'>HTTP Request</h3>
 <p><code>GET api/v1/categories/:category_id</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/category/1">GET a specific category Id 1</a></p>
-<h3 id='url-parameters-26'>URL Parameters</h3>
+<h3 id='url-parameters-30'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2644,7 +2948,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>The id of the category to retrieve</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-32'>SCOPES</h3>
+<h3 id='scopes-37'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires an authentication token to access.</em></li>
 </ul>
@@ -2686,21 +2990,21 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint will update a specific category.</p>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-38'>HTTP Request</h3>
 <p><code>UPDATE api/v1/categories</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-27'>URL Parameters</h3>
+<h3 id='url-parameters-31'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-33'>SCOPES</h3>
+<h3 id='scopes-38'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an ADMIN authentication token to access.</li>
 </ul>
-<h3 id='fields-7'>FIELDS</h3>
+<h3 id='fields-8'>FIELDS</h3>
 <p>These fields are available to be updated:</p>
 
 <table><thead>
@@ -2769,17 +3073,17 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific category.</p>
-<h3 id='http-request-34'>HTTP Request</h3>
+<h3 id='http-request-39'>HTTP Request</h3>
 <p><code>DELETE api/v1/categories/:category_id</code></p>
 
 <aside class="notice">
 This is an <strong>ADMIN</strong> Route. You must have administrator rights to perform this action.
 </aside>
-<h3 id='url-parameters-28'>URL Parameters</h3>
+<h3 id='url-parameters-32'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-34'>SCOPES</h3>
+<h3 id='scopes-39'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
@@ -2832,13 +3136,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint will generate unique URLS to enable the front end client to upload pictures to AWS S3s</p>
-<h3 id='http-request-35'>HTTP Request</h3>
+<h3 id='http-request-40'>HTTP Request</h3>
 <p><code>POST api/v1/upload</code></p>
-<h3 id='url-parameters-29'>URL Parameters</h3>
+<h3 id='url-parameters-33'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-35'>SCOPES</h3>
+<h3 id='scopes-40'>SCOPES</h3>
 <ul>
 <li><em>This endpoint requires a user to be  **Logged In</em>* to access.*</li>
 </ul>
@@ -2890,7 +3194,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="err">...</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a feed list.</p>
-<h3 id='http-request-36'>HTTP Request</h3>
+<h3 id='http-request-41'>HTTP Request</h3>
 <p><code>GET api/v1/feeds?page=1&amp;limit=15</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15">GET Feed</a></p>
@@ -2900,7 +3204,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <p><code>GET api/v1/feeds?page=1&amp;limit=15&amp;max_price=500&amp;user_id=1</code></p>
 
 <p>Example: <a href="https://jwl-be-staging.herokuapp.com/api/v1/feeds?page=1&amp;limit=15&amp;max_price=500&amp;user_id=1">GET Feed Filtered by Max Price and User ID</a></p>
-<h3 id='url-query-7'>URL Query</h3>
+<h3 id='url-query-8'>URL Query</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2944,7 +3248,7 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 <td>optional</td>
 </tr>
 </tbody></table>
-<h3 id='scopes-36'>SCOPES</h3>
+<h3 id='scopes-41'>SCOPES</h3>
 <ul>
 <li><em>You must be logged in to access this endpoint</em></li>
 </ul>
@@ -3028,13 +3332,13 @@ This is an <strong>ADMIN</strong> Route. You must have administrator rights to p
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint will create a charge for a product. If successful it will generate an order.</p>
-<h3 id='http-request-37'>HTTP Request</h3>
+<h3 id='http-request-42'>HTTP Request</h3>
 <p><code>POST api/v1/payments/stripe/charge</code></p>
-<h3 id='url-parameters-30'>URL Parameters</h3>
+<h3 id='url-parameters-34'>URL Parameters</h3>
 <ul>
 <li><em>No parameters required</em></li>
 </ul>
-<h3 id='scopes-37'>SCOPES</h3>
+<h3 id='scopes-42'>SCOPES</h3>
 <ul>
 <li>This endpoint requires an authentication token to access.</li>
 </ul>
